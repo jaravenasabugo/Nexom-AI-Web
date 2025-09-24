@@ -1,66 +1,13 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import { ChevronDown, Zap } from 'lucide-react';
 
 const Hero = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [showVideo, setShowVideo] = useState(true);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      // Acelerar el video 1.5x
-      video.playbackRate = 1.5;
-      
-      // Cambiar a gradiente cuando el video termine
-      const handleVideoEnd = () => {
-        video.pause();
-        setShowVideo(false);
-      };
-
-      video.addEventListener('ended', handleVideoEnd);
-      
-      return () => {
-        video.removeEventListener('ended', handleVideoEnd);
-      };
-    }
-  }, []);
-
-  // Reiniciar video cuando el usuario regrese a la parte superior
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY < 100) {
-        setShowVideo(true);
-        if (videoRef.current) {
-          videoRef.current.currentTime = 0;
-          videoRef.current.play();
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Fondo fijo estilo espacial (gradiente + partículas)
 
   return (
     <section id="hero" className="min-h-screen flex flex-col items-center justify-center text-center px-4 relative overflow-hidden pt-16">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out">
-        {showVideo ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            className="w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
-          >
-            <source src="/assets/Video final.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#000018] via-[#1E1CA1] to-[#000018] transition-opacity duration-1000 ease-in-out"></div>
-        )}
-        {/* Overlay con transparencia para el video */}
-        <div className="absolute inset-0 bg-black/30 transition-opacity duration-1000 ease-in-out"></div>
-      </div>
+      {/* Background fijo: gradiente espacial */}
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#000018] via-[#1E1CA1] to-[#000018] transition-all duration-1000 ease-in-out"></div>
 
       {/* Background particles effect */}
       <div className="absolute inset-0 opacity-20 z-10">
@@ -69,19 +16,14 @@ const Hero = () => {
         <div className="absolute top-1/2 left-3/4 w-3 h-3 bg-[#04CFFB] rounded-full animate-pulse delay-500"></div>
       </div>
 
-      {/* Large logo - only show after video ends */}
-      {!showVideo && (
-        <div className="z-30 relative mb-10 flex items-center justify-center transition-opacity duration-1000">
-          <img 
-            src="/assets/Logos/15.png" 
-            alt="Nexom AI Logo"
-            className="h-[40rem] md:h-[50rem] lg:h-[60rem] xl:h-[70rem] object-contain"
-          />
-        </div>
-      )}
+      {/* Logo eliminado */}
 
       <div className="max-w-5xl mx-auto z-20 relative">
         
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-orbitron font-extrabold bg-gradient-to-r from-white via-white to-[#4B32FF] bg-clip-text text-transparent mb-6">
+          Nexom AI
+        </h1>
+
         <h1 className="text-5xl md:text-7xl font-orbitron font-bold text-white mb-8 leading-tight">
           IA que lleva tu empresa
           <br />
