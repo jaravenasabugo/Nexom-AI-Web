@@ -41,12 +41,14 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('hero')}
-              className="flex items-center space-x-2 text-white hover:text-[#04CFFB] transition-colors duration-300"
+              className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] rounded-lg flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-orbitron font-bold text-xl">IA Empresarial</span>
+              <img 
+                src="/assets/Logos/Simbolo sin fondo.png" 
+                alt="Nexom AI Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <span className="font-orbitron font-bold text-xl">Nexom AI</span>
             </button>
           </div>
 

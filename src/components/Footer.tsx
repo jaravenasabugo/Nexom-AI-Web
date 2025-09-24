@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, Linkedin, Twitter, Github } from 'lucide-react';
+import { Mail, Phone, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -14,11 +14,11 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Mail className="w-5 h-5 mr-3 text-[#4B32FF]" />
-                <a href="mailto:contacto@ia-empresarial.com">contacto@ia-empresarial.com</a>
+                <a href="mailto:jaravenasabugo@gmail.com">jaravenasabugo@gmail.com</a>
               </div>
               <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Phone className="w-5 h-5 mr-3 text-[#4B32FF]" />
-                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                <a href="tel:+569 96767524">+569 96767524</a>
               </div>
             </div>
           </div>
@@ -32,7 +32,6 @@ const Footer = () => {
               <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">Automatización de Procesos</li>
               <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">Integración de Sistemas</li>
               <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">IA Personalizada</li>
-              <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">Consultoría Tecnológica</li>
             </ul>
           </div>
 
@@ -46,19 +45,13 @@ const Footer = () => {
                 href="#"
                 className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
               >
+                <Instagram className="w-6 h-6 text-white" />
+              </a>
+              <a
+                href="#"
+                className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
+              >
                 <Linkedin className="w-6 h-6 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
-              >
-                <Twitter className="w-6 h-6 text-white" />
-              </a>
-              <a
-                href="#"
-                className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
-              >
-                <Github className="w-6 h-6 text-white" />
               </a>
             </div>
           </div>
@@ -67,7 +60,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-[#4B32FF]/20 pt-8 text-center">
           <p className="text-gray-400 font-rajdhani">
-            © 2024 IA Empresarial. Todos los derechos reservados. | Transformamos tu negocio con inteligencia artificial.
+            © 2025 IA Empresarial. Todos los derechos reservados. | Transformamos tu negocio con inteligencia artificial.
           </p>
         </div>
       </div>
