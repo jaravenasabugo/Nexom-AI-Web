@@ -5,22 +5,22 @@ const AnchorMessages = () => {
   const messages = [
     {
       icon: Target,
-      text: "Acercamos la IA a las empresas de forma simple y útil.",
+      text: "IA simple y útil: acercamos la innovación al corazón de tu empresa.",
       gradient: "from-[#4B32FF] to-[#2784FA]"
     },
     {
       icon: Lightbulb,
-      text: "No solo tecnología: soluciones que generan impacto real.",
+      text: "Soluciones que transforman procesos en oportunidades de crecimiento.",
       gradient: "from-[#2784FA] to-[#04CFFB]"
     },
     {
       icon: TrendingUp,
-      text: "Desde la automatización hasta la creatividad, potenciamos tu crecimiento.",
+      text: "Automatización inteligente para impulsar tu productividad y tus resultados.",
       gradient: "from-[#5027FE] to-[#741FFF]"
     },
     {
       icon: Settings,
-      text: "IA diseñada para simplificar procesos, mejorar la comunicación y aumentar ingresos.",
+      text: "Tecnología que simplifica hoy y potencia el futuro de tu negocio.",
       gradient: "from-[#1359FF] to-[#4B32FF]"
     }
   ];

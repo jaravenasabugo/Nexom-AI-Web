@@ -44,7 +44,7 @@ const Navbar = () => {
               className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
             >
               <img 
-                src="/assets/Logos/Simbolo sin fondo.png" 
+                src="/assets/Logos/Simbolo.png" 
                 alt="Nexom AI Logo" 
                 className="w-8 h-8 object-contain"
               />

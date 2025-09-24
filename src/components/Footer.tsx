@@ -31,7 +31,6 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-300 font-rajdhani">
               <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">Automatización de Procesos</li>
               <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">Integración de Sistemas</li>
-              <li className="hover:text-[#04CFFB] transition-colors cursor-pointer">IA Personalizada</li>
             </ul>
           </div>
 
@@ -60,7 +59,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-[#4B32FF]/20 pt-8 text-center">
           <p className="text-gray-400 font-rajdhani">
-            © 2025 IA Empresarial. Todos los derechos reservados. | Transformamos tu negocio con inteligencia artificial.
+            © 2025 Nexom AI. Todos los derechos reservados. | Transformamos tu negocio con automatizaciones a la medida.
           </p>
         </div>
       </div>

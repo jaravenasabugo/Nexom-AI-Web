@@ -1,37 +1,37 @@
 import React from 'react';
-import { Bot, Cog, BarChart3, MessageSquare, Workflow, Brain } from 'lucide-react';
+import { Bot, Cog, BarChart3, MessageSquare, Workflow, Share2 } from 'lucide-react';
 
 const Services = () => {
   const services = [
     {
       icon: Bot,
       title: "Automatización de Procesos",
-      description: "Convertimos tareas repetitivas en flujos automáticos que ahorran tiempo y reducen errores."
+      description: "Convierte tareas repetitivas en flujos inteligentes que ahorran tiempo, reducen costos y eliminan errores."
     },
     {
       icon: Workflow,
       title: "Integración de Sistemas",
-      description: "Conectamos tus aplicaciones favoritas para que trabajen juntas sin fricción."
-    },
-    {
-      icon: BarChart3,
-      title: "Análisis Inteligente",
-      description: "Transformamos datos en insights accionables para tomar mejores decisiones."
+      description: "Unimos tus aplicaciones y plataformas para que trabajen juntas, sin fricciones ni duplicidad de esfuerzos."
     },
     {
       icon: MessageSquare,
       title: "Chatbots Empresariales",
-      description: "Asistentes virtuales que mejoran la atención al cliente 24/7."
-    },
-    {
-      icon: Brain,
-      title: "IA Personalizada",
-      description: "Desarrollamos soluciones de inteligencia artificial específicas para tu negocio."
+      description: "Asistentes virtuales que atienden a tus clientes 24/7, resolviendo consultas y mejorando la experiencia."
     },
     {
       icon: Cog,
-      title: "Consultoría Tecnológica",
-      description: "Te guiamos en la transformación digital con estrategias probadas."
+      title: "Soluciones a Medida",
+      description: "Diseñamos desarrollos personalizados que responden a tus desafíos específicos y potencian tu negocio."
+    },
+    {
+      icon: Share2,
+      title: "Automatización en Redes Sociales",
+      description: "Publicaciones programadas, generación de contenido y reportes automáticos para mantener tu marca siempre activa."
+    },
+    {
+      icon: BarChart3,
+      title: "Automatización de Reportes",
+      description: "Genera y envía informes automáticos de manera eficiente, ahorrando tiempo y recursos."
     }
   ];
 
@@ -42,9 +42,7 @@ const Services = () => {
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
             Nuestros Servicios
           </h2>
-          <p className="text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto">
-            Ofrecemos soluciones completas de inteligencia artificial y automatización para empresas de todos los tamaños.
-          </p>
+      
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

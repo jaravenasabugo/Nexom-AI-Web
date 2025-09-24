@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Send, User, Mail, MessageCircle, Target, Building, Globe } from 'lucide-react';
 
 const Contact = () => {
@@ -11,32 +11,102 @@ const Contact = () => {
     message: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (videoRef.current) observer.observe(videoRef.current);
+
+    return () => {
+      if (videoRef.current) observer.unobserve(videoRef.current);
+    };
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Aquí iría la lógica de envío del formulario
-    alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
+
+    try {
+      const response = await fetch(
+        "https://n8n.srv999623.hstgr.cloud/webhook/Contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        }
+      );
+
+      if (response.ok) {
+        alert("¡Gracias por tu mensaje! Te contactaremos pronto.");
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          website: '',
+          interest: 'cotizacion',
+          message: ''
+        });
+      } else {
+        alert("Ocurrió un error, intenta nuevamente.");
+      }
+    } catch (error) {
+      console.error("Error al enviar:", error);
+      alert("No se pudo conectar con el servidor.");
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-b from-[#000018] to-[#0a0a2e] px-4 scroll-mt-16">
-      <div className="max-w-4xl mx-auto">
+    <section
+      id="contact"
+      className="relative pt-10 pb-20 px-4 scroll-mt-16 overflow-hidden"
+    >
+      {/* Video de fondo */}
+      <video
+        ref={videoRef}
+        src="/assets/Video.mp4"
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        playsInline
+        muted
+        onEnded={(e) => e.currentTarget.pause()}
+      />
+
+      {/* Overlay oscuro */}
+      <div className="absolute inset-0 bg-black/60"></div>
+
+      {/* Contenido */}
+      <div className="relative max-w-4xl mx-auto z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6 drop-shadow-lg">
             Contáctanos
           </h2>
-          <p className="text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto">
+          <p className="text-xl text-gray-200 font-rajdhani max-w-3xl mx-auto drop-shadow-md">
             ¿Listo para automatizar tu negocio? Cuéntanos tu proyecto y te ayudaremos a hacerlo realidad.
           </p>
         </div>
 
+        {/* Formulario (idéntico al tuyo) */}
         <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

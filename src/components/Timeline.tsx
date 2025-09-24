@@ -6,27 +6,26 @@ const Timeline = () => {
     {
       icon: Search,
       title: "Entendimiento de requerimientos",
-      subtitle: "(Fase actual)",
-      description: "Levantamiento de información detallada mediante este cuestionario.",
+      description: "Levantamiento de información y definición de objetivos.",
       active: true
     },
     {
       icon: BarChart3,
       title: "Evaluación de alternativas y presupuesto",
       description: "Análisis de opciones (desde soluciones simples hasta escalables con IA) y entrega de propuesta con presupuesto y plazos.",
-      active: false
+      active: true
     },
     {
       icon: Settings,
       title: "Implementación de la solución",
-      description: "Configuración del flujo, integración con las aplicaciones del cliente y pruebas iniciales.",
-      active: false
+      description: "Configuración del flujo, integración con las aplicaciones y pruebas iniciales.",
+      active: true
     },
     {
       icon: CheckCircle,
       title: "Puesta en marcha y validación",
       description: "Ejecución en entorno real, validación de resultados con el cliente y ajustes finales.",
-      active: false
+      active: true
     }
   ];
 

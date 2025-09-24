@@ -11,22 +11,16 @@ const Checklist = () => {
       icon: Monitor,
       text: "Involucra uso de aplicaciones digitales o archivos (ej. Gmail, Excel, CRM)."
     },
-    {
-      icon: RotateCcw,
-      text: "Se repite con frecuencia (diaria, semanal, mensual)."
-    },
+
     {
       icon: Clock,
-      text: "Consume tiempo manual que podría ahorrarse."
+      text: "Consume tiempo y recursos que pueden ser ahorrados."
     },
     {
       icon: ListChecks,
-      text: "Se basa en reglas claras (ejemplo: \"si pasa X, hacer Y\")."
+      text: "Un proceso es automatizable cuando sigue pasos definidos, por ejemplo: si ocurre X, entonces hacer Y."
     },
-    {
-      icon: Link,
-      text: "Puede beneficiarse de integraciones entre sistemas."
-    }
+    
   ];
 
   return (

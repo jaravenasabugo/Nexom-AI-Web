@@ -1,24 +1,24 @@
 import React from 'react';
-import { Target, Zap, Users } from 'lucide-react';
+import { Target, Zap, Shield } from 'lucide-react';
 
 const WhyUs = () => {
   const features = [
     {
       icon: Target,
       title: "Personalización total",
-      description: "No usamos plantillas genéricas, diseñamos la automatización a tu medida.",
+      description: "Cada solución se diseña a la medida de tu negocio, con foco en tus procesos y objetivos.",
       gradient: "from-[#4B32FF] to-[#2784FA]"
     },
     {
       icon: Zap,
-      title: "Rapidez en el funcionamiento",
-      description: "Flujos simples que empiezan a entregar valor en poco tiempo.",
+      title: "Implementación ágil",
+      description: "De la idea a la ejecución en semanas, no meses. Generamos valor desde el primer día.",
       gradient: "from-[#2784FA] to-[#04CFFB]"
     },
     {
-      icon: Users,
-      title: "Acompañamiento en la implementación",
-      description: "Te guiamos paso a paso hasta que el sistema esté estable y validado.",
+      icon: Shield,
+      title: "Confianza y seguridad",
+      description: "Protegemos tus datos y procesos con flujos estables, trazables y seguros, para que automatices con tranquilidad.",
       gradient: "from-[#5027FE] to-[#741FFF]"
     }
   ];
