@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Send, User, Mail, MessageCircle, Target, Building, Globe } from 'lucide-react';
 
 const Contact = () => {
@@ -11,49 +11,21 @@ const Contact = () => {
     message: ''
   });
 
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && videoRef.current) {
-            videoRef.current.currentTime = 0;
-            videoRef.current.play();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (videoRef.current) observer.observe(videoRef.current);
-
-    return () => {
-      if (videoRef.current) observer.unobserve(videoRef.current);
-    };
-  }, []);
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
       const response = await fetch(
         "https://n8n.srv999623.hstgr.cloud/webhook/Contact",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
         }
       );
 
@@ -79,23 +51,53 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative pt-10 pb-20 px-4 scroll-mt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden"
     >
-      {/* Video de fondo */}
-      <video
-        ref={videoRef}
-        src="/assets/Video.mp4"
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        playsInline
-        muted
-        onEnded={(e) => e.currentTarget.pause()}
-      />
+      {/* Fondo espacial animado */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05051a] via-[#0a0a2e] to-[#000010] overflow-hidden">
+        {/* Nebulosas animadas */}
+        <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] bg-[#4B32FF] rounded-full mix-blend-screen filter blur-[140px] opacity-60 animate-[float_14s_ease-in-out_infinite]" />
+        <div className="absolute top-1/4 right-0 w-[34rem] h-[34rem] bg-[#04CFFB] rounded-full mix-blend-screen filter blur-[160px] opacity-45 animate-[float_18s_ease-in-out_infinite]" />
+        <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem] bg-[#2784FA] rounded-full mix-blend-screen filter blur-[180px] opacity-40 animate-[float_22s_ease-in-out_infinite]" />
 
-      {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-black/60"></div>
+        {/* Estrellas parpadeantes */}
+        {[...Array(120)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-[2px] h-[2px] bg-white rounded-full animate-[twinkle_3s_infinite]"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.9,
+              animationDelay: `${Math.random() * 8}s`,
+              transform: `scale(${Math.random() * 1.4 + 0.6})`,
+            }}
+          />
+        ))}
 
-      {/* Contenido */}
+        {/* Meteoritos diagonales */}
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute opacity-0 animate-[shooting_6s_linear_infinite]"
+            style={{
+              top: `${10 + i * 20}%`,
+              left: `${70 + i * 5}%`,
+              width: "180px",
+              height: "4px",
+              background: "linear-gradient(90deg, transparent, #04CFFB, white)",
+              borderRadius: "50%",
+              transform: "rotate(135deg)",
+              animationDelay: `${i * 2.5}s`,
+            }}
+          />
+        ))}
+
+        {/* Efecto aurora boreal */}
+        <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-[#04CFFB]/10 via-[#4B32FF]/20 to-transparent blur-[120px] animate-[aurora_12s_ease-in-out_infinite]" />
+      </div>
+
+      {/* Contenido + Formulario (exactamente igual que lo tenías) */}
       <div className="relative max-w-4xl mx-auto z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6 drop-shadow-lg">
@@ -106,7 +108,7 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Formulario (idéntico al tuyo) */}
+        {/* Formulario */}
         <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -146,7 +148,7 @@ const Contact = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Nombre de la empresa */}
+              {/* Empresa */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                   <Building className="w-5 h-5 mr-2 text-[#04CFFB]" />
@@ -163,7 +165,7 @@ const Contact = () => {
                 />
               </div>
 
-              {/* Página web de la empresa */}
+              {/* Website */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                   <Globe className="w-5 h-5 mr-2 text-[#04CFFB]" />
@@ -181,7 +183,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Interés Principal */}
+            {/* Interés */}
             <div className="space-y-2">
               <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                 <Target className="w-5 h-5 mr-2 text-[#04CFFB]" />
@@ -216,7 +218,7 @@ const Contact = () => {
               />
             </div>
 
-            {/* Botón de envío */}
+            {/* Botón */}
             <div className="text-center">
               <button
                 type="submit"
@@ -229,6 +231,27 @@ const Contact = () => {
           </form>
         </div>
       </div>
+
+      {/* Animaciones */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-50px) translateX(30px); }
+        }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 1; }
+        }
+        @keyframes shooting {
+          0% { transform: translate(0, 0) rotate(135deg); opacity: 0; }
+          10% { opacity: 1; }
+          100% { transform: translate(-600px, 600px) rotate(135deg); opacity: 0; }
+        }
+        @keyframes aurora {
+          0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.4; }
+          50% { transform: translateY(-30px) scaleY(1.2); opacity: 0.7; }
+        }
+      `}</style>
     </section>
   );
 };
