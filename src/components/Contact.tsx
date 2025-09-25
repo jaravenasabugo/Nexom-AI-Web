@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, User, Mail, MessageCircle, Target, Building, Globe } from 'lucide-react';
+import { Send, User, Mail, MessageCircle, Target, Building, Globe, Phone } from 'lucide-react';
 
 /* ===== Utilidades de validación/sanitización ===== */
 const stripTags = (s: string) => s.replace(/<\/?[^>]+(>|$)/g, '');
@@ -10,18 +10,20 @@ const isValidEmail = (email: string) => {
   return re.test(email);
 };
 
+const isValidPhone = (phone: string) => {
+  if (!phone) return true; // opcional
+  const re = /^[0-9+\-\s]{6,20}$/;
+  return re.test(phone);
+};
+
 const isValidURL = (url: string) => {
   if (!url) return true; // opcional
-  try {
-    const u = new URL(url);
-    return u.protocol === 'http:' || u.protocol === 'https:';
-  } catch {
-    return false;
-  }
+  // Permite URLs con o sin protocolo
+  const re = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/.*)?$/i;
+  return re.test(url);
 };
 
 const isValidName = (name: string) => {
-  // Letras, espacios y algunos signos comunes. Largo 2-100.
   const re = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’. -]{2,100}$/;
   return re.test(name);
 };
@@ -31,6 +33,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     website: '',
     interest: 'cotizacion',
@@ -59,6 +62,7 @@ const Contact = () => {
     const payload = {
       name: sanitize(formData.name).slice(0, 100),
       email: sanitize(formData.email).toLowerCase().slice(0, 150),
+      phone: sanitize(formData.phone).slice(0, 20),
       company: sanitize(formData.company).slice(0, 120),
       website: sanitize(formData.website).slice(0, 200),
       interest: formData.interest,
@@ -74,8 +78,12 @@ const Contact = () => {
       setStatusMessage({ type: "error", text: "⚠️ El correo electrónico no es válido." });
       return;
     }
+    if (payload.phone && !isValidPhone(payload.phone)) {
+      setStatusMessage({ type: "error", text: "⚠️ El número de teléfono no es válido (usa solo dígitos, +, espacios o guiones)." });
+      return;
+    }
     if (payload.website && !isValidURL(payload.website)) {
-      setStatusMessage({ type: "error", text: "⚠️ La URL de tu sitio web no parece válida (usa http(s)://)." });
+      setStatusMessage({ type: "error", text: "⚠️ La página web no parece válida." });
       return;
     }
     if (!payload.message || payload.message.length < 5) {
@@ -98,6 +106,7 @@ const Contact = () => {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           company: '',
           website: '',
           interest: 'cotizacion',
@@ -135,23 +144,6 @@ const Contact = () => {
             }}
           />
         ))}
-        {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute opacity-0 animate-[shooting_6s_linear_infinite]"
-            style={{
-              top: `${10 + i * 20}%`,
-              left: `${70 + i * 5}%`,
-              width: "180px",
-              height: "4px",
-              background: "linear-gradient(90deg, transparent, #04CFFB, white)",
-              borderRadius: "50%",
-              transform: "rotate(135deg)",
-              animationDelay: `${i * 2.5}s`,
-            }}
-          />
-        ))}
-        <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-[#04CFFB]/10 via-[#4B32FF]/20 to-transparent blur-[120px] animate-[aurora_12s_ease-in-out_infinite]" />
       </div>
 
       {/* Contenido + Formulario */}
@@ -181,9 +173,7 @@ const Contact = () => {
                   required
                   maxLength={100}
                   pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’. \-]{2,100}"
-                  title="Solo letras y espacios (2 a 100 caracteres)"
-                  autoComplete="name"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
                   placeholder="Tu nombre completo"
                 />
               </div>
@@ -200,14 +190,29 @@ const Contact = () => {
                   maxLength={150}
                   autoComplete="email"
                   inputMode="email"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
                   placeholder="tu@email.com"
                 />
               </div>
             </div>
 
-            {/* Empresa y Website */}
+            {/* Teléfono y Empresa */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
+                  <Phone className="w-5 h-5 mr-2 text-[#04CFFB]" /> Teléfono <span className="text-gray-400 text-sm ml-2">(opcional)</span>
+                </label>
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  maxLength={20}
+                  placeholder="+56 9 1234 5678"
+                  autoComplete="tel"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                />
+              </div>
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                   <Building className="w-5 h-5 mr-2 text-[#04CFFB]" /> Empresa <span className="text-gray-400 text-sm ml-2">(opcional)</span>
@@ -218,26 +223,27 @@ const Contact = () => {
                   value={formData.company}
                   onChange={handleChange}
                   maxLength={120}
-                  autoComplete="organization"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
                   placeholder="Nombre de tu empresa"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                  <Globe className="w-5 h-5 mr-2 text-[#04CFFB]" /> Página web <span className="text-gray-400 text-sm ml-2">(opcional)</span>
-                </label>
-                <input
-                  type="url"
-                  name="website"
-                  value={formData.website}
-                  onChange={handleChange}
-                  maxLength={200}
-                  placeholder="https://tuempresa.com"
-                  autoComplete="url"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
-                />
-              </div>
+            </div>
+
+            {/* Website */}
+            <div className="space-y-2">
+              <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
+                <Globe className="w-5 h-5 mr-2 text-[#04CFFB]" /> Página web <span className="text-gray-400 text-sm ml-2">(opcional)</span>
+              </label>
+              <input
+                type="text"
+                name="website"
+                value={formData.website}
+                onChange={handleChange}
+                maxLength={200}
+                placeholder="tusitio.com"
+                autoComplete="url"
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+              />
             </div>
 
             {/* Interés */}
@@ -249,7 +255,7 @@ const Contact = () => {
                 name="interest"
                 value={formData.interest}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
               >
                 <option value="cotizacion">Cotización</option>
                 <option value="demo">Demo</option>
@@ -269,8 +275,8 @@ const Contact = () => {
                 rows={6}
                 required
                 maxLength={1000}
-                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300 resize-vertical"
-                placeholder="Cuéntanos sobre tu proyecto, qué procesos quieres automatizar y qué resultados esperas obtener..."
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 resize-vertical"
+                placeholder="Cuéntanos sobre tu proyecto..."
               />
               <p className="text-sm text-gray-400 font-rajdhani">Máx. 1000 caracteres</p>
             </div>
@@ -279,7 +285,7 @@ const Contact = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#2784FA] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[0_20px_40px_rgba(75,50,255,0.3)]"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#2784FA] transition-all duration-300 transform hover:scale-105 shadow-2xl"
               >
                 Enviar Mensaje
                 <Send className="ml-2 w-5 h-5" />
@@ -301,26 +307,6 @@ const Contact = () => {
           </form>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-50px) translateX(30px); }
-        }
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.2; }
-          50% { opacity: 1; }
-        }
-        @keyframes shooting {
-          0% { transform: translate(0, 0) rotate(135deg); opacity: 0; }
-          10% { opacity: 1; }
-          100% { transform: translate(-600px, 600px) rotate(135deg); opacity: 0; }
-        }
-        @keyframes aurora {
-          0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.4; }
-          50% { transform: translateY(-30px) scaleY(1.2); opacity: 0.7; }
-        }
-      `}</style>
     </section>
   );
 };
