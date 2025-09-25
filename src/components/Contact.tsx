@@ -1,6 +1,32 @@
 import React, { useState } from 'react';
 import { Send, User, Mail, MessageCircle, Target, Building, Globe } from 'lucide-react';
 
+/* ===== Utilidades de validación/sanitización ===== */
+const stripTags = (s: string) => s.replace(/<\/?[^>]+(>|$)/g, '');
+const sanitize = (s: string) => stripTags(s).replace(/\s+/g, ' ').trim();
+
+const isValidEmail = (email: string) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+  return re.test(email);
+};
+
+const isValidURL = (url: string) => {
+  if (!url) return true; // opcional
+  try {
+    const u = new URL(url);
+    return u.protocol === 'http:' || u.protocol === 'https:';
+  } catch {
+    return false;
+  }
+};
+
+const isValidName = (name: string) => {
+  // Letras, espacios y algunos signos comunes. Largo 2-100.
+  const re = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’. -]{2,100}$/;
+  return re.test(name);
+};
+/* ================================================ */
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,18 +40,50 @@ const Contact = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    // No recortamos mientras escribe para no incomodar; sanitizamos al enviar.
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Sanitizar y recortar longitudes
+    const payload = {
+      name: sanitize(formData.name).slice(0, 100),
+      email: sanitize(formData.email).toLowerCase().slice(0, 150),
+      company: sanitize(formData.company).slice(0, 120),
+      website: sanitize(formData.website).slice(0, 200),
+      interest: formData.interest, // select controlado
+      message: sanitize(formData.message).slice(0, 1000),
+    };
+
+    // Validaciones
+    if (!isValidName(payload.name)) {
+      alert('Por favor ingresa un nombre válido (solo letras y espacios, entre 2 y 100 caracteres).');
+      return;
+    }
+    if (!isValidEmail(payload.email)) {
+      alert('Por favor ingresa un email válido.');
+      return;
+    }
+    if (payload.website && !isValidURL(payload.website)) {
+      alert('La URL de tu sitio web no parece válida (usa http(s)://).');
+      return;
+    }
+    if (!payload.message || payload.message.length < 5) {
+      alert('El mensaje es muy corto. Cuéntanos un poco más (mínimo 5 caracteres).');
+      return;
+    }
+
     try {
       const response = await fetch(
-        "https://n8n.srv999623.hstgr.cloud/webhook/Contact",
+        // Paso 2 (proteger endpoint) lo haremos luego; por ahora dejamos la misma URL:
+        import.meta.env.VITE_CONTACT_ENDPOINT,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(payload),
         }
       );
 
@@ -97,7 +155,7 @@ const Contact = () => {
         <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-[#04CFFB]/10 via-[#4B32FF]/20 to-transparent blur-[120px] animate-[aurora_12s_ease-in-out_infinite]" />
       </div>
 
-      {/* Contenido + Formulario (exactamente igual que lo tenías) */}
+      {/* Contenido + Formulario */}
       <div className="relative max-w-4xl mx-auto z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6 drop-shadow-lg">
@@ -110,7 +168,7 @@ const Contact = () => {
 
         {/* Formulario */}
         <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-8 md:p-12">
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-8" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Nombre */}
               <div className="space-y-2">
@@ -124,6 +182,10 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  maxLength={100}
+                  pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’. \-]{2,100}"
+                  title="Solo letras y espacios (2 a 100 caracteres)"
+                  autoComplete="name"
                   className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
                   placeholder="Tu nombre completo"
                 />
@@ -141,6 +203,9 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  maxLength={150}
+                  autoComplete="email"
+                  inputMode="email"
                   className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
                   placeholder="tu@email.com"
                 />
@@ -160,6 +225,8 @@ const Contact = () => {
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
+                  maxLength={120}
+                  autoComplete="organization"
                   className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
                   placeholder="Nombre de tu empresa"
                 />
@@ -177,8 +244,10 @@ const Contact = () => {
                   name="website"
                   value={formData.website}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
+                  maxLength={200}
                   placeholder="https://tuempresa.com"
+                  autoComplete="url"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300"
                 />
               </div>
             </div>
@@ -213,9 +282,13 @@ const Contact = () => {
                 onChange={handleChange}
                 rows={6}
                 required
+                maxLength={1000}
                 className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300 resize-vertical"
                 placeholder="Cuéntanos sobre tu proyecto, qué procesos quieres automatizar y qué resultados esperas obtener..."
               />
+              <p className="text-sm text-gray-400 font-rajdhani">
+                Máx. 1000 caracteres
+              </p>
             </div>
 
             {/* Botón */}
