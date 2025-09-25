@@ -37,11 +37,18 @@ const Contact = () => {
     message: ''
   });
 
+  const [statusMessage, setStatusMessage] = useState<{
+    type: "success" | "error" | "warning" | null,
+    text: string
+  }>({
+    type: null,
+    text: ""
+  });
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    // No recortamos mientras escribe para no incomodar; sanitizamos al enviar.
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -54,31 +61,30 @@ const Contact = () => {
       email: sanitize(formData.email).toLowerCase().slice(0, 150),
       company: sanitize(formData.company).slice(0, 120),
       website: sanitize(formData.website).slice(0, 200),
-      interest: formData.interest, // select controlado
+      interest: formData.interest,
       message: sanitize(formData.message).slice(0, 1000),
     };
 
     // Validaciones
     if (!isValidName(payload.name)) {
-      alert('Por favor ingresa un nombre válido (solo letras y espacios, entre 2 y 100 caracteres).');
+      setStatusMessage({ type: "error", text: "⚠️ Ingresa un nombre válido (2 a 100 caracteres, solo letras y espacios)." });
       return;
     }
     if (!isValidEmail(payload.email)) {
-      alert('Por favor ingresa un email válido.');
+      setStatusMessage({ type: "error", text: "⚠️ El correo electrónico no es válido." });
       return;
     }
     if (payload.website && !isValidURL(payload.website)) {
-      alert('La URL de tu sitio web no parece válida (usa http(s)://).');
+      setStatusMessage({ type: "error", text: "⚠️ La URL de tu sitio web no parece válida (usa http(s)://)." });
       return;
     }
     if (!payload.message || payload.message.length < 5) {
-      alert('El mensaje es muy corto. Cuéntanos un poco más (mínimo 5 caracteres).');
+      setStatusMessage({ type: "error", text: "⚠️ El mensaje es muy corto. Cuéntanos un poco más (mínimo 5 caracteres)." });
       return;
     }
 
     try {
       const response = await fetch(
-        // Paso 2 (proteger endpoint) lo haremos luego; por ahora dejamos la misma URL:
         import.meta.env.VITE_CONTACT_ENDPOINT,
         {
           method: "POST",
@@ -88,7 +94,7 @@ const Contact = () => {
       );
 
       if (response.ok) {
-        alert("¡Gracias por tu mensaje! Te contactaremos pronto.");
+        setStatusMessage({ type: "success", text: "✅ ¡Gracias por tu mensaje! Te contactaremos pronto." });
         setFormData({
           name: '',
           email: '',
@@ -98,11 +104,11 @@ const Contact = () => {
           message: ''
         });
       } else {
-        alert("Ocurrió un error, intenta nuevamente.");
+        setStatusMessage({ type: "error", text: "❌ Ocurrió un error en el servidor. Intenta nuevamente." });
       }
     } catch (error) {
       console.error("Error al enviar:", error);
-      alert("No se pudo conectar con el servidor.");
+      setStatusMessage({ type: "error", text: "❌ No se pudo conectar con el servidor." });
     }
   };
 
@@ -113,12 +119,9 @@ const Contact = () => {
     >
       {/* Fondo espacial animado */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#05051a] via-[#0a0a2e] to-[#000010] overflow-hidden">
-        {/* Nebulosas animadas */}
         <div className="absolute -top-32 -left-32 w-[32rem] h-[32rem] bg-[#4B32FF] rounded-full mix-blend-screen filter blur-[140px] opacity-60 animate-[float_14s_ease-in-out_infinite]" />
         <div className="absolute top-1/4 right-0 w-[34rem] h-[34rem] bg-[#04CFFB] rounded-full mix-blend-screen filter blur-[160px] opacity-45 animate-[float_18s_ease-in-out_infinite]" />
         <div className="absolute bottom-0 left-1/3 w-[40rem] h-[40rem] bg-[#2784FA] rounded-full mix-blend-screen filter blur-[180px] opacity-40 animate-[float_22s_ease-in-out_infinite]" />
-
-        {/* Estrellas parpadeantes */}
         {[...Array(120)].map((_, i) => (
           <div
             key={i}
@@ -132,8 +135,6 @@ const Contact = () => {
             }}
           />
         ))}
-
-        {/* Meteoritos diagonales */}
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
@@ -150,8 +151,6 @@ const Contact = () => {
             }}
           />
         ))}
-
-        {/* Efecto aurora boreal */}
         <div className="absolute inset-x-0 bottom-0 h-[50vh] bg-gradient-to-t from-[#04CFFB]/10 via-[#4B32FF]/20 to-transparent blur-[120px] animate-[aurora_12s_ease-in-out_infinite]" />
       </div>
 
@@ -166,15 +165,13 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Formulario */}
         <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+            {/* Nombre y Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Nombre */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                  <User className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                  Nombre
+                  <User className="w-5 h-5 mr-2 text-[#04CFFB]" /> Nombre
                 </label>
                 <input
                   type="text"
@@ -190,12 +187,9 @@ const Contact = () => {
                   placeholder="Tu nombre completo"
                 />
               </div>
-
-              {/* Email */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                  <Mail className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                  Email
+                  <Mail className="w-5 h-5 mr-2 text-[#04CFFB]" /> Email
                 </label>
                 <input
                   type="email"
@@ -212,13 +206,11 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* Empresa y Website */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Empresa */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                  <Building className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                  Nombre de la empresa
-                  <span className="text-gray-400 text-sm ml-2">(opcional)</span>
+                  <Building className="w-5 h-5 mr-2 text-[#04CFFB]" /> Empresa <span className="text-gray-400 text-sm ml-2">(opcional)</span>
                 </label>
                 <input
                   type="text"
@@ -231,13 +223,9 @@ const Contact = () => {
                   placeholder="Nombre de tu empresa"
                 />
               </div>
-
-              {/* Website */}
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                  <Globe className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                  Página web
-                  <span className="text-gray-400 text-sm ml-2">(opcional)</span>
+                  <Globe className="w-5 h-5 mr-2 text-[#04CFFB]" /> Página web <span className="text-gray-400 text-sm ml-2">(opcional)</span>
                 </label>
                 <input
                   type="url"
@@ -255,8 +243,7 @@ const Contact = () => {
             {/* Interés */}
             <div className="space-y-2">
               <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                <Target className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                Interés Principal
+                <Target className="w-5 h-5 mr-2 text-[#04CFFB]" /> Interés Principal
               </label>
               <select
                 name="interest"
@@ -273,8 +260,7 @@ const Contact = () => {
             {/* Mensaje */}
             <div className="space-y-2">
               <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
-                <MessageCircle className="w-5 h-5 mr-2 text-[#04CFFB]" />
-                Mensaje
+                <MessageCircle className="w-5 h-5 mr-2 text-[#04CFFB]" /> Mensaje
               </label>
               <textarea
                 name="message"
@@ -286,9 +272,7 @@ const Contact = () => {
                 className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 transition-all duration-300 resize-vertical"
                 placeholder="Cuéntanos sobre tu proyecto, qué procesos quieres automatizar y qué resultados esperas obtener..."
               />
-              <p className="text-sm text-gray-400 font-rajdhani">
-                Máx. 1000 caracteres
-              </p>
+              <p className="text-sm text-gray-400 font-rajdhani">Máx. 1000 caracteres</p>
             </div>
 
             {/* Botón */}
@@ -301,11 +285,23 @@ const Contact = () => {
                 <Send className="ml-2 w-5 h-5" />
               </button>
             </div>
+
+            {/* Mensaje de estado */}
+            {statusMessage.type && (
+              <div
+                className={`mt-6 p-4 rounded-xl font-rajdhani text-lg text-center ${
+                  statusMessage.type === "success"
+                    ? "bg-green-600/20 border border-green-500 text-green-300"
+                    : "bg-red-600/20 border border-red-500 text-red-300"
+                }`}
+              >
+                {statusMessage.text}
+              </div>
+            )}
           </form>
         </div>
       </div>
 
-      {/* Animaciones */}
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0) translateX(0); }
