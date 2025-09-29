@@ -6,6 +6,7 @@ import Services from './components/Services';
 import Timeline from './components/Timeline';
 import Checklist from './components/Checklist';
 import UseCases from './components/UseCases';
+import ModelosEntrega from './components/ModelosEntrega';
 import WhyUs from './components/WhyUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -20,6 +21,7 @@ function App() {
       <Timeline />
       <Checklist />
       <UseCases />
+      <ModelosEntrega />
       <WhyUs />
       <Contact />
       <Footer />

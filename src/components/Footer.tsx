@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Mail className="w-5 h-5 mr-3 text-[#4B32FF]" />
-                <a href="mailto:jaravenasabugo@gmail.com">jaravenasabugo@gmail.com</a>
+                <a href="mailto:jaravenasabugo@gmail.com">nexom2025ai@gmail.com</a>
               </div>
               <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Phone className="w-5 h-5 mr-3 text-[#4B32FF]" />

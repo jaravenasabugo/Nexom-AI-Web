@@ -27,6 +27,7 @@ const Navbar = () => {
     { name: 'Servicios', id: 'services' },
     { name: 'Procedimiento', id: 'timeline' },
     { name: 'Casos de uso', id: 'use-cases' },
+    { name: 'Modelos de entrega', id: 'modelos-entrega' },
     { name: 'Por qué elegirnos', id: 'why-us' },
     { name: 'Contacto', id: 'contact' }
   ];
