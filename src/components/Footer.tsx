@@ -1,11 +1,12 @@
-import React from 'react';
-import { Mail, Phone, Facebook, Twitter, Github, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Phone, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface FooterProps {
-  onPrivacyPolicyClick?: () => void;
-}
+const Footer = () => {
+  const navigate = useNavigate();
 
-const Footer = ({ onPrivacyPolicyClick }: FooterProps) => {
+  const handlePrivacyPolicyClick = () => {
+    navigate('/politica-privacidad');
+  };
   return (
     <footer className="bg-gradient-to-b from-[#0a0a2e] to-[#000018] border-t border-[#4B32FF]/20 px-4 py-12">
       <div className="max-w-6xl mx-auto">
@@ -79,10 +80,7 @@ const Footer = ({ onPrivacyPolicyClick }: FooterProps) => {
           </p>
           <div className="flex justify-center">
             <button 
-              onClick={() => {
-                console.log('Botón de política de privacidad clickeado');
-                onPrivacyPolicyClick?.();
-              }}
+              onClick={handlePrivacyPolicyClick}
               className="text-[#04CFFB] font-rajdhani hover:underline transition-all duration-300 hover:text-white cursor-pointer"
             >
               Política de Privacidad de Nexom AI

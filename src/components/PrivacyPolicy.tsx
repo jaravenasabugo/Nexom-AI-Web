@@ -1,16 +1,11 @@
 import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-interface PrivacyPolicyProps {
-  onNavigateToHome?: () => void;
-}
+const PrivacyPolicy = () => {
+  const navigate = useNavigate();
 
-const PrivacyPolicy = ({ onNavigateToHome }: PrivacyPolicyProps) => {
   const handleBackClick = () => {
-    if (onNavigateToHome) {
-      onNavigateToHome();
-    } else {
-      window.history.back();
-    }
+    navigate('/');
   };
 
   return (
