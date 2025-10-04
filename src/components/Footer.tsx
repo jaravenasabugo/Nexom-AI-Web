@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
+import { Mail, Phone, Facebook, Twitter, Github, Instagram, MessageCircle } from 'lucide-react';
 
 interface FooterProps {
   onPrivacyPolicyClick?: () => void;
@@ -45,16 +45,28 @@ const Footer = ({ onPrivacyPolicyClick }: FooterProps) => {
             </h3>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.instagram.com/nexom_ai/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
               >
                 <Instagram className="w-6 h-6 text-white" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61581352422042&locale=es_LA"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
               >
-                <Linkedin className="w-6 h-6 text-white" />
+                <Facebook className="w-6 h-6 text-white" />
+              </a>
+              <a
+                href="https://wa.me/56971555426?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20los%20servicios%20de%20automatización%20de%20Nexom%20AI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"
+              >
+                <MessageCircle className="w-6 h-6 text-white" />
               </a>
             </div>
           </div>
