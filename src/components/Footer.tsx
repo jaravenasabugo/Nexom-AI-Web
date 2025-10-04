@@ -1,7 +1,11 @@
 import React from 'react';
 import { Mail, Phone, Linkedin, Twitter, Github, Instagram } from 'lucide-react';
 
-const Footer = () => {
+interface FooterProps {
+  onPrivacyPolicyClick?: () => void;
+}
+
+const Footer = ({ onPrivacyPolicyClick }: FooterProps) => {
   return (
     <footer className="bg-gradient-to-b from-[#0a0a2e] to-[#000018] border-t border-[#4B32FF]/20 px-4 py-12">
       <div className="max-w-6xl mx-auto">
@@ -58,9 +62,20 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-[#4B32FF]/20 pt-8 text-center">
-          <p className="text-gray-400 font-rajdhani">
+          <p className="text-gray-400 font-rajdhani mb-4">
             © 2025 Nexom AI. Todos los derechos reservados. | Transformamos tu negocio con automatizaciones a la medida.
           </p>
+          <div className="flex justify-center">
+            <button 
+              onClick={() => {
+                console.log('Botón de política de privacidad clickeado');
+                onPrivacyPolicyClick?.();
+              }}
+              className="text-[#04CFFB] font-rajdhani hover:underline transition-all duration-300 hover:text-white cursor-pointer"
+            >
+              Política de Privacidad de Nexom AI
+            </button>
+          </div>
         </div>
       </div>
     </footer>
