@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import FAQPage from './pages/FAQPage';
+import NosotrosPage from './pages/NosotrosPage';
 
 // Componente para la página principal
 const HomePage = () => (
@@ -28,11 +29,12 @@ const HomePage = () => (
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
-        <Route path="/preguntas-frecuentes" element={<FAQPage />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/nosotros" element={<NosotrosPage />} />
+          <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
+          <Route path="/preguntas-frecuentes" element={<FAQPage />} />
+        </Routes>
     </Router>
   );
 }
