@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import FAQPage from './pages/FAQPage';
 import NosotrosPage from './pages/NosotrosPage';
+import KPIsAreaPage from './pages/KPIsAreaPage';
 
 // Componente para la página principal
 const HomePage = () => (
@@ -34,6 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/nosotros" element={<NosotrosPage />} />
+          <Route path="/kpis-por-area" element={<KPIsAreaPage />} />
           <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
           <Route path="/preguntas-frecuentes" element={<FAQPage />} />
         </Routes>

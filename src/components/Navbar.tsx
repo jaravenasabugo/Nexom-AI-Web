@@ -31,8 +31,8 @@ const Navbar = () => {
       setIsOpen(false);
     } else {
       // Es una sección de la página
-      if (location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros') {
-        // Si estamos en la página de FAQ o Nosotros, navegar a la página principal con scroll
+      if (location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area') {
+        // Si estamos en una página secundaria, navegar a la página principal con scroll
         navigate(`/#${item.id}`);
         // Esperar un poco y luego hacer scroll
         setTimeout(() => {
@@ -65,7 +65,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' ? (
+            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
               <Link
                 to="/"
                 className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
@@ -121,7 +121,7 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' ? (
+            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
               <button
                 onClick={() => {
                   navigate('/#contact');
@@ -182,7 +182,7 @@ const Navbar = () => {
                 </button>
               )
             ))}
-            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' ? (
+            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
               <button
                 onClick={() => {
                   navigate('/#contact');
