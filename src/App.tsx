@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import KPIs from './components/KPIs';
 import Services from './components/Services';
 import Checklist from './components/Checklist';
 import UseCases from './components/UseCases';
@@ -17,6 +18,7 @@ const HomePage = () => (
   <div className="min-h-screen bg-[#000018]">
     <Navbar />
     <Hero />
+    <KPIs />
     <Services />
     <Checklist />
     <UseCases />
