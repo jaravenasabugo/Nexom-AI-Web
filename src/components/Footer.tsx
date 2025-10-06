@@ -46,7 +46,7 @@ const Footer = () => {
             </h3>
             <div className="flex space-x-4">
               <a
-                href="https://www.instagram.com/nexom_ai/"
+                href="https://www.instagram.com/nexom.ai/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-110"

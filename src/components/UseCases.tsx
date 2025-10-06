@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { 
   Megaphone, 
   TrendingUp, 
@@ -7,7 +7,8 @@ import {
   BarChart3, 
   Users, 
   Brain,
-  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Share2,
   Mail,
   Database,
@@ -33,7 +34,8 @@ import {
 } from 'lucide-react';
 
 const UseCases = () => {
-  const [openCategory, setOpenCategory] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const categories = [
     {
@@ -246,87 +248,116 @@ const UseCases = () => {
     }
   ];
 
-  const toggleCategory = (categoryId: number) => {
-    setOpenCategory(openCategory === categoryId ? null : categoryId);
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % categories.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + categories.length) % categories.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
   };
 
   return (
     <section id="use-cases" className="py-20 bg-gradient-to-b from-[#000018] to-[#0a0a2e] px-4 scroll-mt-16">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
             Casos de Uso por Área
           </h2>
           <p className="text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto">
-            Descubre cómo la automatización puede transformar cada área de tu empresa. Haz clic en cada categoría para ver los servicios específicos.
+            Descubre cómo la automatización puede transformar cada área de tu empresa. Deslízate horizontalmente para explorar todas las categorías.
           </p>
         </div>
 
-        <div className="space-y-6">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className={`bg-gradient-to-r from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-2xl border ${category.borderColor} overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl ${category.hoverBorderColor}`}
-            >
-              {/* Header del acordeón */}
-              <button
-                onClick={() => toggleCategory(category.id)}
-                className="w-full p-6 text-left flex items-center justify-between hover:bg-gradient-to-r hover:from-[#4B32FF]/10 hover:to-[#04CFFB]/10 transition-all duration-300 group"
-              >
-                <div className="flex items-center space-x-4">
-                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-r ${category.color} shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
-                    <category.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-rajdhani font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
-                    {category.title}
-                  </h3>
-                </div>
-                <div className={`text-[#04CFFB] transition-all duration-500 transform ${
-                  openCategory === category.id ? 'rotate-180' : 'rotate-0'
-                }`}>
-                  <ChevronDown className="w-6 h-6" />
-                </div>
-              </button>
+        {/* Carrusel Container */}
+        <div className="relative">
+          {/* Navigation Buttons */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
 
-              {/* Contenido desplegable con animación mejorada */}
-              <div
-                className={`overflow-hidden transition-all duration-700 ease-in-out ${
-                  openCategory === category.id 
-                    ? 'max-h-[1200px] opacity-100 translate-y-0' 
-                    : 'max-h-0 opacity-0 -translate-y-4'
-                }`}
-              >
-                <div className="px-6 pb-8">
-                  <div className="border-t border-gradient-to-r from-[#4B32FF]/20 to-[#04CFFB]/20 pt-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {category.items.map((item, index) => (
-                        <div
-                          key={index}
-                          className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
-                        >
-                          <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${item.gradient} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
-                            <item.icon className="w-8 h-8 text-white" />
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Carousel Content */}
+          <div 
+            ref={scrollContainerRef}
+            className="overflow-hidden mx-16"
+          >
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {categories.map((category, index) => (
+                <div key={category.id} className="w-full flex-shrink-0 px-4">
+                  <div className="bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:border-[#04CFFB]/50">
+                    {/* Header de la categoría */}
+                    <div className="p-8 text-center border-b border-[#4B32FF]/20">
+                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${category.color} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
+                        <category.icon className="w-10 h-10 text-white" />
+                      </div>
+                      <h3 className="text-3xl font-orbitron font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
+                        {category.title}
+                      </h3>
+                    </div>
+
+                    {/* Contenido de la categoría */}
+                    <div className="p-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {category.items.map((item, itemIndex) => (
+                          <div
+                            key={itemIndex}
+                            className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+                          >
+                            <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${item.gradient} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
+                              <item.icon className="w-8 h-8 text-white" />
+                            </div>
+                            
+                            <h4 className="text-lg font-rajdhani font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
+                              {item.title}
+                            </h4>
+                            
+                            <p className="text-gray-300 font-rajdhani leading-relaxed text-sm">
+                              {item.description}
+                            </p>
                           </div>
-                          
-                          <h4 className="text-lg font-rajdhani font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
-                            {item.title}
-                          </h4>
-                          
-                          <p className="text-gray-300 font-rajdhani leading-relaxed text-sm">
-                            {item.description}
-                          </p>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {categories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] scale-125' 
+                    : 'bg-gray-600 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Call to action */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <p className="text-lg text-gray-300 font-rajdhani mb-6">
             ¿Interesado en implementar alguna de estas soluciones?
           </p>
