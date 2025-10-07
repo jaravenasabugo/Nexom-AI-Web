@@ -25,9 +25,9 @@ const Services = () => {
     },
     {
       icon: Bot,
-      title: "Asistentes Virtuales y Chatbots Inteligentes",
+      title: "Asistentes Virtuales",
       impactPhrase: "Tu propio experto disponible 24/7, para tus clientes y tu equipo.",
-      description: "Creamos asistentes con IA que aprenden de tus documentos y bases de datos. Responden consultas complejas, ejecutan tareas y entregan soporte instantáneo con lenguaje natural, tanto en tu web como en tus procesos internos.",
+      description: "Creamos asistentes con IA que aprenden de tus documentos y bases de datos. Responden consultas complejas, ejecutan tareas y entregan soporte instantáneo.",
       backgroundImage: "/assets/services/Asistentes-Virtuales.png",
       buttonText: "Descubrir los Chatbots"
     },
@@ -35,7 +35,7 @@ const Services = () => {
       icon: Share2, 
       title: "Automatización de Marketing y Redes Sociales",
       impactPhrase: "Pon tu marketing en piloto automático y multiplica tus resultados.",
-      description: "Automatizamos la gestión completa de tu marketing digital: desde la publicación de contenido y la generación de leads hasta el seguimiento de prospectos con correos personalizados. Todo con reportes automáticos para medir el impacto real.",
+      description: "Automatizamos la gestión completa de tu marketing digital: desde la publicación de contenido y la generación de leads hasta el seguimiento de prospectos con correos personalizados.",
       backgroundImage: "/assets/services/Marketing-Redes-Sociales.png",
       buttonText: "Automatizar mi marketing"
     },
@@ -51,15 +51,15 @@ const Services = () => {
       icon: Cog, 
       title: "Desarrollo de Soluciones a Medida",
       impactPhrase: "Si puedes imaginarlo, podemos construirlo.",
-      description: "Diseñamos sistemas y automatizaciones únicas que se adaptan perfectamente a los procesos y objetivos de tu negocio. Cada proyecto se construye desde cero para maximizar la eficiencia y darte una ventaja competitiva real.",
+      description: "Diseñamos automatizaciones que se adaptan perfectamente a los procesos y objetivos de tu negocio. Cada proyecto se construye para maximizar la eficiencia y darte una ventaja competitiva real.",
       backgroundImage: "/assets/services/Soluciones-Medida.png",
       buttonText: "Contarme tu idea"
     },
     {
       icon: Bot, 
-      title: "Integraciones con Inteligencia Artificial (IA Avanzada)",
+      title: "Integraciones con Inteligencia Artificial",
       impactPhrase: "Anticípate al futuro con IA predictiva.",
-      description: "Llevamos tus flujos de trabajo al siguiente nivel. Implementamos IA para realizar análisis predictivos, scoring de clientes, procesamiento inteligente de documentos y comprensión contextual, permitiendo decisiones más rápidas y rentables.",
+      description: "Llevamos tus flujos de trabajo al siguiente nivel. Implementamos IA para realizar análisis predictivos, permitiendo decisiones más rápidas y rentables.",
       backgroundImage: "/assets/services/Ia-Avanzada.png",
       buttonText: "Explorar IA Avanzada"
     }
