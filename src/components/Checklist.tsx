@@ -1,5 +1,4 @@
-import React from 'react';
-import { FileText, Monitor, RotateCcw, Clock, ListChecks, Link, ArrowRight } from 'lucide-react';
+import { FileText, Monitor, Clock, ListChecks, ArrowRight } from 'lucide-react';
 
 const Checklist = () => {
   const checklistItems = [
@@ -24,8 +23,27 @@ const Checklist = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0a0a2e] to-[#000018] px-4">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-20 overflow-hidden px-4">
+      {/* Video de fondo */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          style={{ minHeight: '100%', minWidth: '100%' }}
+        >
+          <source src="/assets/videos/presentacion-marca.mp4" type="video/mp4" />
+          Tu navegador no soporta videos HTML5.
+        </video>
+        {/* Overlay para legibilidad */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a2e]/80 to-[#000018]/90"></div>
+      </div>
+      
+      {/* Contenido */}
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
             ¿Cómo sé si mi proceso puede automatizarse?
@@ -39,7 +57,7 @@ const Checklist = () => {
           {checklistItems.map((item, index) => (
             <div
               key={index}
-              className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-xl border border-[#4B32FF]/20 hover:border-[#04CFFB]/40 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+              className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/50 to-[#4B32FF]/40 rounded-xl border border-[#4B32FF]/20 hover:border-[#04CFFB]/40 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-2xl mb-4 group-hover:from-[#5027FE] group-hover:to-[#04CFFB] transition-all duration-300 group-hover:scale-110">
                 <item.icon className="w-8 h-8 text-white" />

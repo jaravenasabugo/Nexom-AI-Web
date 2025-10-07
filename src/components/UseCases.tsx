@@ -6,7 +6,6 @@ import {
   Headphones, 
   BarChart3, 
   Users, 
-  Brain,
   ChevronLeft,
   ChevronRight,
   Share2,
@@ -19,15 +18,10 @@ import {
   ThumbsUp,
   BarChart,
   FileText,
-  Bell,
   UserPlus,
   Calendar,
   UserCheck,
-  Bot,
-  FileSearch,
-  Star,
   AlertTriangle,
-  Zap,
   Target,
   RefreshCw,
   HardDrive
@@ -48,20 +42,20 @@ const UseCases = () => {
       items: [
         {
           icon: Share2,
-          title: "Publicación en redes sociales",
-          description: "Programación automática de contenido y seguimiento de interacciones.",
+          title: "Automatiza tu presencia digital.",
+          description: "Programa publicaciones, gestiona contenidos y mide interacciones en todas tus redes desde un solo lugar.",
           gradient: "from-[#4B32FF] to-[#2784FA]"
         },
         {
           icon: Mail,
-          title: "Email marketing y leads",
-          description: "Campañas segmentadas y correos automáticos de bienvenida, recordatorios o promociones.",
+          title: "Llega a quien necesitas",
+          description: "Envía correos automatizados de bienvenida, recordatorios o promociones, segmentados según el interés de cada usuario.",
           gradient: "from-[#2784FA] to-[#04CFFB]"
         },
         {
           icon: Database,
-          title: "Gestión de CRM y formularios",
-          description: "Integración de formularios web con CRM para crear o actualizar clientes en tiempo real.",
+          title: "Sincroniza tus contactos sin esfuerzo",
+          description: "Integra formularios web y plataformas de CRM para crear, actualizar y nutrir clientes automáticamente en tiempo real.",
           gradient: "from-[#04CFFB] to-[#4B32FF]"
         }
       ]
@@ -76,8 +70,8 @@ const UseCases = () => {
       items: [
         {
           icon: Target,
-          title: "Seguimiento de prospectos",
-          description: "Recordatorios automáticos de correos y llamadas según interacciones previas.",
+          title: "Calificación inteligente de cliente",
+          description: "La IA identifica y prioriza automáticamente a los clientes con mayor potencial de compra.",
           gradient: "from-[#04CFFB] to-[#2784FA]"
         },
         {
@@ -104,20 +98,20 @@ const UseCases = () => {
       items: [
         {
           icon: RefreshCw,
-          title: "Sincronización de datos entre sistemas",
-          description: "Mantener alineadas bases de datos y aplicaciones internas.",
+          title: "Control de inventario automatizado",
+          description: "Supervisa y genera alertas inmediatas cuando el stock es bajo.",
           gradient: "from-[#2784FA] to-[#4B32FF]"
         },
         {
           icon: Package,
-          title: "Gestión de inventario automatizada",
-          description: "Actualización en tiempo real y alertas de stock bajo.",
+          title: "Optimización de flujos internos",
+          description: "Detecta cuellos de botella y automatiza tareas repetitivas para aumentar la eficiencia.",
           gradient: "from-[#4B32FF] to-[#04CFFB]"
         },
         {
           icon: Wrench,
-          title: "Tareas operativas y TI",
-          description: "Backups programados, creación de usuarios, órdenes de trabajo y calendarios.",
+          title: "Optimización predictiva con Inteligencia Artificial",
+          description: "La IA anticipa necesidades de insumos, personal o mantenimiento para evitar interrupciones.",
           gradient: "from-[#04CFFB] to-[#2784FA]"
         }
       ]
@@ -132,20 +126,20 @@ const UseCases = () => {
       items: [
         {
           icon: MessageCircle,
-          title: "Respuestas automáticas a consultas frecuentes",
-          description: "Contestar preguntas comunes y escalar casos complejos.",
+          title: "Asistentes que conocen tu empresa",
+          description: "Chatbots inteligentes que resuelven consultas en base a la información y datos reales de tu negocio.",
           gradient: "from-[#4B32FF] to-[#04CFFB]"
         },
         {
           icon: Ticket,
-          title: "Gestión de tickets",
-          description: "Creación y asignación automática en Zendesk, Freshdesk, etc.",
+          title: "Escalamiento automático de casos críticos",
+          description: "Los casos complejos o urgentes se derivan automáticamente al equipo humano.",
           gradient: "from-[#04CFFB] to-[#2784FA]"
         },
         {
           icon: ThumbsUp,
-          title: "Feedback y encuestas",
-          description: "Envío automático de encuestas de satisfacción tras cada atención.",
+          title: "Atención 24/7 sin interrupciones",
+          description: "Un asistente que nunca duerme: responde y aprende 24/7 para tu empresa.",
           gradient: "from-[#2784FA] to-[#4B32FF]"
         }
       ]
@@ -161,19 +155,19 @@ const UseCases = () => {
         {
           icon: HardDrive,
           title: "Consolidación de información",
-          description: "Centralizar datos de distintas áreas en un solo repositorio.",
+          description: "Centralizar datos de distintas áreas en un solo lugar.",
           gradient: "from-[#04CFFB] to-[#2784FA]"
         },
         {
           icon: FileText,
           title: "Informes automáticos",
-          description: "Reportes periódicos de ventas, finanzas o métricas clave.",
+          description: "Genera informes automáticos de ventas, finanzas o desempeño, listos para enviarse a tu equipo o clientes.",
           gradient: "from-[#2784FA] to-[#4B32FF]"
         },
         {
           icon: AlertTriangle,
-          title: "Alertas inteligentes",
-          description: "Notificaciones ante anomalías o cambios críticos en datos.",
+          title: "Análisis predictivo con IA",
+          description: "Anticipa tendencias, ventas o comportamientos clave a partir de tus propios datos.",
           gradient: "from-[#4B32FF] to-[#04CFFB]"
         }
       ]
@@ -200,52 +194,12 @@ const UseCases = () => {
         },
         {
           icon: UserCheck,
-          title: "Onboarding e incorporación",
-          description: "Generación de accesos, contratos y reuniones de inducción.",
+          title: "Evaluación de talento con IA",
+          description: "Analiza perfiles y desempeño para identificar a los candidatos con mayor potencial de éxito.",
           gradient: "from-[#04CFFB] to-[#2784FA]"
         }
-      ]
-    },
-    {
-      id: 7,
-      icon: Brain,
-      title: "Integraciones con Inteligencia Artificial (IA)",
-      color: "from-[#4B32FF] to-[#04CFFB]",
-      borderColor: "border-[#4B32FF]/30",
-      hoverBorderColor: "hover:border-[#4B32FF]/60",
-      items: [
-        {
-          icon: Bot,
-          title: "Soporte al cliente con IA",
-          description: "Chatbots inteligentes que responden en tiempo real.",
-          gradient: "from-[#4B32FF] to-[#04CFFB]"
-        },
-        {
-          icon: FileSearch,
-          title: "Procesamiento inteligente de información",
-          description: "Resúmenes automáticos de correos, actas y reportes.",
-          gradient: "from-[#04CFFB] to-[#2784FA]"
-        },
-        {
-          icon: Star,
-          title: "Calificación de leads con IA",
-          description: "Scoring de prospectos para priorizar clientes con mayor potencial.",
-          gradient: "from-[#2784FA] to-[#4B32FF]"
-        },
-        {
-          icon: Bell,
-          title: "Notificaciones inteligentes",
-          description: "Alertas con análisis contextual de datos y redes sociales.",
-          gradient: "from-[#4B32FF] to-[#04CFFB]"
-        },
-        {
-          icon: Zap,
-          title: "Acciones autónomas en flujos",
-          description: "Agentes de IA que ejecutan tareas directamente en los sistemas.",
-          gradient: "from-[#04CFFB] to-[#2784FA]"
-        }
-      ]
-    }
+        ]
+      }
   ];
 
   const nextSlide = () => {
@@ -298,14 +252,22 @@ const UseCases = () => {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {categories.map((category, index) => (
+              {categories.map((category) => (
                 <div key={category.id} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:border-[#04CFFB]/50">
+                  <div className="relative rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:border-[#04CFFB]/50">
+                    {/* Imagen de fondo */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                      style={{
+                        backgroundImage: "url('/assets/backgrounds/Casos-Fondo.png')"
+                      }}
+                    ></div>
+                    {/* Overlay para legibilidad */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1E1CA1]/80 to-[#4B32FF]/60"></div>
+                    {/* Contenido */}
+                    <div className="relative z-10">
                     {/* Header de la categoría */}
                     <div className="p-8 text-center border-b border-[#4B32FF]/20">
-                      <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${category.color} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
-                        <category.icon className="w-10 h-10 text-white" />
-                      </div>
                       <h3 className="text-3xl font-orbitron font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
                         {category.title}
                       </h3>
@@ -317,7 +279,7 @@ const UseCases = () => {
                         {category.items.map((item, itemIndex) => (
                           <div
                             key={itemIndex}
-                            className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+                            className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/60 to-[#4B32FF]/50 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
                           >
                             <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${item.gradient} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
                               <item.icon className="w-8 h-8 text-white" />
@@ -333,6 +295,7 @@ const UseCases = () => {
                           </div>
                         ))}
                       </div>
+                    </div>
                     </div>
                   </div>
                 </div>

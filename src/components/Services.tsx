@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Bot, Cog, BarChart3, MessageSquare, Workflow, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Bot, Cog, BarChart3, Workflow, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Services = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,10 +7,18 @@ const Services = () => {
 
   const services = [
     {
+      icon: Cog, 
+      title: "Desarrollo de Soluciones a Medida",
+      impactPhrase: "Si puedes imaginarlo, podemos construirlo.",
+      description: "Diseñamos automatizaciones que se adaptan perfectamente a los procesos y objetivos de tu negocio. Cada proyecto se construye para maximizar la eficiencia y darte una ventaja competitiva real.",
+      backgroundImage: "/assets/services/Soluciones-Medida.png",
+      buttonText: "Contarme tu idea"
+    },
+    {
       icon: Workflow,
       title: "Integración de Sistemas",
       impactPhrase: "Conecta tus herramientas, unifica tu negocio.",
-      description: "Integramos todas tus herramientas para que trabajen en conjunto de forma automática.",
+      description: "Integramos tus herramientas clave —Gmail, WhatsApp, Google Sheets, Slack y más— para que la información fluya automáticamente entre ellas, eliminando pasos manuales y errores humanos.",
       backgroundImage: "/assets/services/Integracion-Sistemas.png",
       buttonText: "Quiero conectar mis herramientas"
     },
@@ -35,7 +43,7 @@ const Services = () => {
       icon: Share2, 
       title: "Automatización de Marketing y Redes Sociales",
       impactPhrase: "Pon tu marketing en piloto automático y multiplica tus resultados.",
-      description: "Automatizamos la gestión completa de tu marketing digital: desde la publicación de contenido y la generación de leads hasta el seguimiento de prospectos con correos personalizados.",
+      description: "Automatizamos todo tu marketing digital: publicaciones, generación de contactos interesados y seguimiento automático mediante correos personalizados que impulsan tus ventas.",
       backgroundImage: "/assets/services/Marketing-Redes-Sociales.png",
       buttonText: "Automatizar mi marketing"
     },
@@ -46,14 +54,6 @@ const Services = () => {
       description: "Transformamos tus datos en tu mayor activo. Creamos flujos que consolidan información de distintas fuentes, generan reportes automáticos y envían alertas inteligentes para que siempre tengas el control y la información que necesitas.",
       backgroundImage: "/assets/services/Reportes-Analitica.png",
       buttonText: "Ver mis datos en acción"
-    },
-    {
-      icon: Cog, 
-      title: "Desarrollo de Soluciones a Medida",
-      impactPhrase: "Si puedes imaginarlo, podemos construirlo.",
-      description: "Diseñamos automatizaciones que se adaptan perfectamente a los procesos y objetivos de tu negocio. Cada proyecto se construye para maximizar la eficiencia y darte una ventaja competitiva real.",
-      backgroundImage: "/assets/services/Soluciones-Medida.png",
-      buttonText: "Contarme tu idea"
     },
     {
       icon: Bot, 
@@ -85,7 +85,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-[#0a0a2e] to-[#000018] px-4 scroll-mt-16">
+    <section id="services" className="py-12 bg-gradient-to-b from-[#0a0a2e] to-[#000018] px-4 scroll-mt-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
