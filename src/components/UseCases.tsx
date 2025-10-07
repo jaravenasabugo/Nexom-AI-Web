@@ -217,11 +217,11 @@ const UseCases = () => {
   return (
     <section id="use-cases" className="py-20 bg-gradient-to-b from-[#000018] to-[#0a0a2e] px-4 scroll-mt-16">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 sm:mb-6">
             Casos de Uso por Área
           </h2>
-          <p className="text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto leading-relaxed">
             Descubre cómo la automatización puede transformar cada área de tu empresa. 
           </p>
         </div>
@@ -231,29 +231,29 @@ const UseCases = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-3 h-3 sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-3 h-3 sm:w-6 sm:h-6" />
           </button>
 
           {/* Carousel Content */}
           <div 
             ref={scrollContainerRef}
-            className="overflow-hidden mx-16"
+            className="overflow-hidden mx-0 sm:mx-16 md:mx-20"
           >
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {categories.map((category) => (
-                <div key={category.id} className="w-full flex-shrink-0 px-4">
+                <div key={category.id} className="w-full flex-shrink-0 px-0 sm:px-4">
                   <div className="relative rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:border-[#04CFFB]/50">
                     {/* Imagen de fondo */}
                     <div 
@@ -267,29 +267,29 @@ const UseCases = () => {
                     {/* Contenido */}
                     <div className="relative z-10">
                     {/* Header de la categoría */}
-                    <div className="p-8 text-center border-b border-[#4B32FF]/20">
-                      <h3 className="text-3xl font-orbitron font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
+                    <div className="p-2 sm:p-6 md:p-8 text-center border-b border-[#4B32FF]/20">
+                      <h3 className="text-base sm:text-2xl md:text-3xl font-orbitron font-bold text-white mb-1 sm:mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300 leading-tight">
                         {category.title}
                       </h3>
                     </div>
 
                     {/* Contenido de la categoría */}
-                    <div className="p-8">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="p-2 sm:p-6 md:p-8">
+                      <div className="grid grid-cols-1 gap-2 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {category.items.map((item, itemIndex) => (
                           <div
                             key={itemIndex}
-                            className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/60 to-[#4B32FF]/50 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+                            className="group text-center p-1 sm:p-4 md:p-6 bg-gradient-to-br from-[#1E1CA1]/60 to-[#4B32FF]/50 rounded-2xl border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
                           >
-                            <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${item.gradient} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
-                              <item.icon className="w-8 h-8 text-white" />
+                            <div className={`inline-flex items-center justify-center w-8 h-8 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-r ${item.gradient} mb-1 sm:mb-3 md:mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
+                              <item.icon className="w-4 h-4 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                             </div>
                             
-                            <h4 className="text-lg font-rajdhani font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
+                            <h4 className="text-xs sm:text-base md:text-lg font-rajdhani font-bold text-white mb-1 sm:mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300 leading-tight">
                               {item.title}
                             </h4>
                             
-                            <p className="text-gray-300 font-rajdhani leading-relaxed text-sm">
+                            <p className="text-gray-300 font-rajdhani leading-relaxed text-xs sm:text-sm">
                               {item.description}
                             </p>
                           </div>
@@ -321,12 +321,12 @@ const UseCases = () => {
 
         {/* Call to action */}
         <div className="text-center mt-16">
-          <p className="text-lg text-gray-300 font-rajdhani mb-6">
+          <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
             ¿Interesado en implementar alguna de estas soluciones?
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#1359FF] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[0_20px_40px_rgba(75,50,255,0.3)]"
+            className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#1359FF] transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-[0_20px_40px_rgba(75,50,255,0.3)] min-h-[48px]"
           >
             Solicitar Consulta Gratuita
           </a>

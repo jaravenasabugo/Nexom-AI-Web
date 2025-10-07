@@ -179,54 +179,54 @@ const KPIsAreaPage: React.FC = () => {
               {/* Navigation Buttons */}
               <button
                 onClick={prevAreaSlide}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-3 h-3 sm:w-6 sm:h-6" />
               </button>
 
               <button
                 onClick={nextAreaSlide}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-3 h-3 sm:w-6 sm:h-6" />
               </button>
 
               {/* Carousel Content */}
               <div 
                 ref={scrollContainerRef}
-                className="overflow-hidden mx-16"
+                className="overflow-hidden mx-0 sm:mx-16 md:mx-20"
               >
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${currentAreaSlide * 100}%)` }}
                 >
                   {areaKPIs.map((area) => (
-                    <div key={area.area} className="w-full flex-shrink-0 px-4">
-                      <div className="bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl p-8 border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl">
+                    <div key={area.area} className="w-full flex-shrink-0 px-0 sm:px-4">
+                      <div className="bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl p-2 sm:p-6 md:p-8 border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl">
                         {/* Header del área */}
-                        <div className="text-center mb-8">
-                          <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${area.color} mb-4`}>
-                            <area.icon className="w-10 h-10 text-white" />
+                        <div className="text-center mb-2 sm:mb-6 md:mb-8">
+                          <div className={`inline-flex items-center justify-center w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-r ${area.color} mb-1 sm:mb-3 md:mb-4`}>
+                            <area.icon className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                           </div>
-                          <h3 className="text-3xl font-orbitron font-bold text-white mb-4">
+                          <h3 className="text-sm sm:text-xl md:text-2xl lg:text-3xl font-orbitron font-bold text-white mb-1 sm:mb-3 md:mb-4 leading-tight">
                             {area.area}
                           </h3>
                         </div>
 
                         {/* KPIs del área */}
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 gap-1 sm:gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
                           {area.kpis.map((kpi, kpiIndex) => (
                             <div
                               key={kpiIndex}
-                              className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl p-6 border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-center"
+                              className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl p-1 sm:p-4 md:p-6 border border-[#4B32FF]/30 hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-center"
                             >
-                              <h4 className="text-2xl font-orbitron font-bold text-white mb-2">
+                              <h4 className="text-sm sm:text-xl md:text-2xl font-orbitron font-bold text-white mb-1 sm:mb-2">
                                 {kpi.value}
                               </h4>
-                              <h5 className="text-lg font-rajdhani font-bold text-[#04CFFB] mb-2">
+                              <h5 className="text-xs sm:text-base md:text-lg font-rajdhani font-bold text-[#04CFFB] mb-1 sm:mb-2 leading-tight">
                                 {kpi.metric}
                               </h5>
-                              <p className="text-gray-300 font-rajdhani text-sm">
+                              <p className="text-gray-300 font-rajdhani text-xs sm:text-sm leading-relaxed">
                                 {kpi.description}
                               </p>
                             </div>
@@ -256,15 +256,15 @@ const KPIsAreaPage: React.FC = () => {
 
             {/* CTA Final */}
             <div className="text-center mt-16">
-              <p className="text-lg text-gray-300 font-rajdhani mb-6">
+              <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
                 ¿Quieres implementar estas mejoras en tu área?
               </p>
               <button
                 onClick={handleGoToContact}
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[48px] min-w-[200px]"
               >
                 Comenzar mi Transformación
-                <ArrowLeft className="ml-2 w-5 h-5 rotate-180" />
+                <ArrowLeft className="ml-2 w-4 h-4 sm:w-5 sm:h-5 rotate-180" />
               </button>
             </div>
           </div>

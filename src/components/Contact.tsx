@@ -147,20 +147,20 @@ const Contact = () => {
       </div>
 
       {/* Contenido + Formulario */}
-      <div className="relative max-w-4xl mx-auto z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6 drop-shadow-lg">
+      <div className="relative max-w-4xl mx-auto z-10 px-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 sm:mb-6 drop-shadow-lg">
             Contáctanos
           </h2>
-          <p className="text-xl text-gray-200 font-rajdhani max-w-3xl mx-auto drop-shadow-md">
+          <p className="text-lg sm:text-xl text-gray-200 font-rajdhani max-w-3xl mx-auto drop-shadow-md leading-relaxed">
             ¿Listo para automatizar tu negocio? Cuéntanos tu proyecto y te ayudaremos a hacerlo realidad.
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-8 md:p-12">
+        <div className="bg-gradient-to-br from-[#1E1CA1]/30 to-[#4B32FF]/20 rounded-2xl border border-[#4B32FF]/30 backdrop-blur-sm p-6 sm:p-8 md:p-12">
           <form onSubmit={handleSubmit} className="space-y-8" noValidate>
             {/* Nombre y Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                   <User className="w-5 h-5 mr-2 text-[#04CFFB]" /> Nombre
@@ -172,8 +172,8 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   maxLength={100}
-                  pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ'’. \-]{2,100}"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                  pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ''. \-]{2,100}"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
                   placeholder="Tu nombre completo"
                 />
               </div>
@@ -190,14 +190,14 @@ const Contact = () => {
                   maxLength={150}
                   autoComplete="email"
                   inputMode="email"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
                   placeholder="tu@email.com"
                 />
               </div>
             </div>
 
             {/* Teléfono y Empresa */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               <div className="space-y-2">
                 <label className="flex items-center text-white font-rajdhani font-semibold text-lg mb-3">
                   <Phone className="w-5 h-5 mr-2 text-[#04CFFB]" /> Teléfono <span className="text-gray-400 text-sm ml-2">(opcional)</span>
@@ -210,7 +210,7 @@ const Contact = () => {
                   maxLength={20}
                   placeholder="+56 9 1234 5678"
                   autoComplete="tel"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
                 />
               </div>
               <div className="space-y-2">
@@ -224,7 +224,7 @@ const Contact = () => {
                   onChange={handleChange}
                   maxLength={120}
                   placeholder="Nombre de tu empresa"
-                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                  className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
                 />
               </div>
             </div>
@@ -242,7 +242,7 @@ const Contact = () => {
                 maxLength={200}
                 placeholder="tusitio.com"
                 autoComplete="url"
-                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
               />
             </div>
 
@@ -255,7 +255,7 @@ const Contact = () => {
                 name="interest"
                 value={formData.interest}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20"
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 min-h-[48px]"
               >
                 <option value="cotizacion">Cotización</option>
                 <option value="demo">Demo</option>
@@ -275,7 +275,7 @@ const Contact = () => {
                 rows={6}
                 required
                 maxLength={1000}
-                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 resize-vertical"
+                className="w-full px-4 py-3 bg-[#000018]/50 border border-[#4B32FF]/50 rounded-xl text-white font-rajdhani placeholder-gray-400 focus:border-[#04CFFB] focus:outline-none focus:ring-2 focus:ring-[#04CFFB]/20 resize-vertical min-h-[120px]"
                 placeholder="Cuéntanos sobre tu proyecto..."
               />
               <p className="text-sm text-gray-400 font-rajdhani">Máx. 1000 caracteres</p>
@@ -285,10 +285,10 @@ const Contact = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#2784FA] transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#2784FA] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[48px] min-w-[200px]"
               >
                 Enviar Mensaje
-                <Send className="ml-2 w-5 h-5" />
+                <Send className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 

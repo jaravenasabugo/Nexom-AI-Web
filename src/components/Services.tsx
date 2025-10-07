@@ -87,8 +87,8 @@ const Services = () => {
   return (
     <section id="services" className="py-12 bg-gradient-to-b from-[#0a0a2e] to-[#000018] px-4 scroll-mt-16">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 sm:mb-6">
             Nuestros Servicios
           </h2>
         </div>
@@ -98,31 +98,31 @@ const Services = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-3 h-3 sm:w-6 sm:h-6" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-gradient-to-r from-[#4B32FF] to-[#2784FA] flex items-center justify-center text-white transition-all duration-300 hover:from-[#5027FE] hover:to-[#04CFFB] hover:scale-110"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-50 w-6 h-6 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 hover:bg-white/20 hover:scale-110 min-h-[24px] min-w-[24px] sm:min-h-[48px] sm:min-w-[48px] opacity-60 sm:opacity-100 hover:opacity-100 p-0 sm:p-2"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-3 h-3 sm:w-6 sm:h-6" />
           </button>
 
           {/* Carousel Content */}
           <div 
             ref={scrollContainerRef}
-            className="overflow-hidden mx-16"
+            className="overflow-hidden mx-0 sm:mx-16 md:mx-20"
           >
             <div 
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
               {services.map((service, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
+                <div key={index} className="w-full flex-shrink-0 px-0 sm:px-4">
                   <div 
-                    className="relative rounded-3xl overflow-hidden min-h-[600px] flex items-center"
+                    className="relative rounded-3xl overflow-hidden min-h-[500px] sm:min-h-[600px] flex items-center"
                     style={{
                       backgroundImage: `linear-gradient(rgba(0, 0, 24, 0.7), rgba(0, 0, 24, 0.4)), url(${service.backgroundImage})`,
                       backgroundSize: 'cover',
@@ -131,25 +131,25 @@ const Services = () => {
                     }}
                   >
                     {/* Contenido del servicio */}
-                    <div className="relative z-10 p-12 text-center max-w-4xl mx-auto">
+                    <div className="relative z-10 p-2 sm:p-6 md:p-8 lg:p-12 text-center max-w-4xl mx-auto">
                       {/* Icono */}
-                      <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-2xl mb-8">
-                        <service.icon className="w-10 h-10 text-white" />
+                      <div className="inline-flex items-center justify-center w-10 h-10 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-2xl mb-2 sm:mb-6 md:mb-8">
+                        <service.icon className="w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white" />
                       </div>
 
                       {/* Título */}
-                      <h3 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
+                      <h3 className="text-base sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-orbitron font-bold text-white mb-1 sm:mb-4 md:mb-6 px-1 leading-tight">
                         {service.title}
                       </h3>
 
                       {/* Frase de impacto (Subtítulo) */}
-                      <p className="text-xl md:text-2xl text-[#04CFFB] font-rajdhani font-bold mb-8">
+                      <p className="text-xs sm:text-lg md:text-xl lg:text-2xl text-[#04CFFB] font-rajdhani font-bold mb-2 sm:mb-6 md:mb-8 px-1 leading-tight">
                         {service.impactPhrase}
                       </p>
 
                       {/* Descripción con fondo semitransparente */}
-                      <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-6 mb-10 max-w-4xl mx-auto">
-                        <p className="text-lg text-white font-rajdhani leading-relaxed">
+                      <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-1 sm:p-4 md:p-6 mb-3 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
+                        <p className="text-xs sm:text-base md:text-lg text-white font-rajdhani leading-relaxed">
                           {service.description}
                         </p>
                       </div>
@@ -157,10 +157,10 @@ const Services = () => {
                       {/* Botón de contacto */}
                       <button
                         onClick={scrollToContact}
-                        className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                        className="inline-flex items-center px-2 py-1 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-xs sm:text-base md:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[32px] min-w-[120px] sm:min-w-[200px]"
                       >
                         {service.buttonText}
-                        <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="ml-1 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </button>

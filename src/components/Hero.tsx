@@ -52,35 +52,48 @@ const Hero = () => {
       </div>
 
       {/* Contenido */}
-      <div className="max-w-6xl mx-auto z-20 relative flex flex-col items-center">
+      <div className="max-w-6xl mx-auto z-20 relative flex flex-col items-center px-4">
         <img
           src="/assets/Logos/Simbolo.png"
           alt="Nexom Symbol"
-          className="mx-auto mb-10 w-40 md:w-52 lg:w-60 animate-zoom-in drop-shadow-[0_0_25px_rgba(75,50,255,0.7)]"
+          className="mx-auto mb-8 sm:mb-10 w-32 sm:w-40 md:w-52 lg:w-60 animate-zoom-in drop-shadow-[0_0_25px_rgba(75,50,255,0.7)]"
         />
 
         <h1 className="text-4xl md:text-6xl font-orbitron font-bold text-white mb-8 leading-tight drop-shadow-lg animate-fade-in-up">
-          Automatizamos tus{' '}
-          <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
-            procesos
-          </span>{' '}
-          <br />
-          para que llegues al{' '}
-          <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
-            siguiente nivel
+          <span className="block sm:hidden text-3xl leading-tight">
+            Automatizamos tus{' '}
+            <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
+              procesos
+            </span>
+            <br />
+            para que llegues al{' '}
+            <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
+              siguiente nivel
+            </span>
+          </span>
+          <span className="hidden sm:block">
+            Automatizamos tus{' '}
+            <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
+              procesos
+            </span>{' '}
+            <br />
+            para que llegues al{' '}
+            <span className="bg-gradient-to-r from-[#04CFFB] to-[#4B32FF] bg-clip-text text-transparent">
+              siguiente nivel
+            </span>
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 font-rajdhani mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-rajdhani mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-md px-4">
           Transformamos procesos complejos y repetitivos en soluciones automatizadas que impulsan el crecimiento de tu negocio.
         </p>
 
         <a
           href="#contact"
-          className="inline-flex items-center px-10 py-5 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-xl rounded-2xl hover:from-[#5027FE] hover:to-[#1359FF] transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-[0_25px_50px_rgba(75,50,255,0.35)]"
+          className="inline-flex items-center px-8 py-4 sm:px-10 sm:py-5 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg sm:text-xl rounded-2xl hover:from-[#5027FE] hover:to-[#1359FF] transition-all duration-300 transform hover:scale-110 shadow-2xl hover:shadow-[0_25px_50px_rgba(75,50,255,0.35)] min-h-[56px] min-w-[200px]"
         >
           Solicitar Cotización
-          <Zap className="ml-2 w-6 h-6" />
+          <Zap className="ml-2 w-5 h-5 sm:w-6 sm:h-6" />
         </a>
       </div>
 

@@ -150,26 +150,26 @@ const KPIs = () => {
         {/* SECCIÓN 1: KPIs GENERALES */}
         <div className="mb-20">
                  {/* KPI Cards Generales */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-16">
             {kpiData.map((kpi, index) => (
               <a
                 key={index}
                 href={kpi.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`bg-gradient-to-br ${kpi.bgColor} rounded-2xl p-6 border ${kpi.borderColor} hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl cursor-pointer group`}
+                className={`bg-gradient-to-br ${kpi.bgColor} rounded-2xl p-4 sm:p-6 border ${kpi.borderColor} hover:border-[#04CFFB]/50 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl cursor-pointer group`}
               >
                 <div className="text-center">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${kpi.color} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <kpi.icon className="w-8 h-8 text-white" />
+                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-r ${kpi.color} mb-2 sm:mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <kpi.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                   </div>
-                  <h3 className="text-3xl font-orbitron font-bold text-white mb-2 group-hover:text-[#04CFFB] transition-colors duration-300">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-orbitron font-bold text-white mb-1 sm:mb-2 group-hover:text-[#04CFFB] transition-colors duration-300">
                     {kpi.value}
                   </h3>
-                  <h4 className="text-lg font-rajdhani font-bold text-white mb-3">
+                  <h4 className="text-sm sm:text-base lg:text-lg font-rajdhani font-bold text-white mb-1 sm:mb-2 lg:mb-3">
                     {kpi.title}
                   </h4>
-                  <div className="text-xs text-gray-400 font-rajdhani border-t border-gray-600/30 pt-2">
+                  <div className="text-xs text-gray-400 font-rajdhani border-t border-gray-600/30 pt-1 sm:pt-2">
                     Fuente: {kpi.source}
                   </div>
                 </div>
@@ -178,72 +178,78 @@ const KPIs = () => {
           </div>
 
           {/* Estadísticas Adicionales */}
-          <div className="bg-gradient-to-r from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-3xl p-8 border border-[#04CFFB]/30">
-            <div className="text-center mb-8">
-              <h3 className="text-3xl font-orbitron font-bold text-white mb-4">
+          <div className="bg-gradient-to-r from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-3xl p-4 sm:p-6 lg:p-8 border border-[#04CFFB]/30">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-orbitron font-bold text-white mb-3 sm:mb-4">
                 La Tendencia del Mercado en Chile
               </h3>
-              <p className="text-xl text-gray-300 font-rajdhani">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 font-rajdhani">
                 No te quedes atrás: La adopción de automatización es una necesidad competitiva
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 lg:gap-8">
               <div className="text-center">
-                <div className="text-4xl font-orbitron font-bold text-[#04CFFB] mb-2">
+                <div className="text-lg sm:text-3xl lg:text-4xl font-orbitron font-bold text-[#04CFFB] mb-1 sm:mb-2">
                   {animatedMarketStats.pymesInvertiran}%
                 </div>
-                <div className="text-gray-300 font-rajdhani">
-                  De las PYMES invertirán en digitalización
+                <div className="text-gray-300 font-rajdhani text-xs leading-tight sm:text-sm lg:text-base">
+                  <span className="block sm:hidden">PYMES invertirán</span>
+                  <span className="hidden sm:block">De las PYMES invertirán en digitalización</span>
                 </div>
-                <div className="text-sm text-gray-400 font-rajdhani mt-2">
-                  Fuente: Movistar Empresas, 2024
+                <div className="text-xs text-gray-400 font-rajdhani mt-1 sm:mt-2">
+                  <span className="block sm:hidden">Movistar 2024</span>
+                  <span className="hidden sm:block">Fuente: Movistar Empresas, 2024</span>
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-orbitron font-bold text-[#04CFFB] mb-2">
+                <div className="text-lg sm:text-3xl lg:text-4xl font-orbitron font-bold text-[#04CFFB] mb-1 sm:mb-2">
                   {animatedMarketStats.ventajaCompetitiva}%
                 </div>
-                <div className="text-gray-300 font-rajdhani">
-                  Reportan ventaja competitiva significativa
+                <div className="text-gray-300 font-rajdhani text-xs leading-tight sm:text-sm lg:text-base">
+                  <span className="block sm:hidden">Ventaja competitiva</span>
+                  <span className="hidden sm:block">Reportan ventaja competitiva significativa</span>
                 </div>
-                <div className="text-sm text-gray-400 font-rajdhani mt-2">
-                  Fuente: Gitnux, 2024
+                <div className="text-xs text-gray-400 font-rajdhani mt-1 sm:mt-2">
+                  <span className="block sm:hidden">Gitnux 2024</span>
+                  <span className="hidden sm:block">Fuente: Gitnux, 2024</span>
                 </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-orbitron font-bold text-[#04CFFB] mb-2">
+              <div className="text-center sm:col-span-2 lg:col-span-1">
+                <div className="text-lg sm:text-3xl lg:text-4xl font-orbitron font-bold text-[#04CFFB] mb-1 sm:mb-2">
                   {animatedMarketStats.pymesResultados}%
                 </div>
-                <div className="text-gray-300 font-rajdhani">
-                  De las PYMES ya ven resultados positivos
+                <div className="text-gray-300 font-rajdhani text-xs leading-tight sm:text-sm lg:text-base">
+                  <span className="block sm:hidden">PYMES ven resultados</span>
+                  <span className="hidden sm:block">De las PYMES ya ven resultados positivos</span>
                 </div>
-                <div className="text-sm text-gray-400 font-rajdhani mt-2">
-                  Fuente: Movistar, 2024
+                <div className="text-xs text-gray-400 font-rajdhani mt-1 sm:mt-2">
+                  <span className="block sm:hidden">Movistar 2024</span>
+                  <span className="hidden sm:block">Fuente: Movistar, 2024</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Enlaces de Acción */}
-          <div className="grid md:grid-cols-2 gap-8 mt-16 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-16 mb-16">
             {/* Enlace a KPIs por Área */}
-            <div className="bg-gradient-to-br from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-2xl border border-[#04CFFB]/30 backdrop-blur-sm p-8 flex flex-col h-full">
+            <div className="bg-gradient-to-br from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-2xl border border-[#04CFFB]/30 backdrop-blur-sm p-6 sm:p-8 flex flex-col h-full">
               <div className="text-center flex-grow">
-                <h3 className="text-2xl font-orbitron font-bold text-white mb-4">
+                <h3 className="text-xl sm:text-2xl font-orbitron font-bold text-white mb-4">
                   ¿Quieres saber cómo impactaría en tu área?
                 </h3>
-                <p className="text-lg text-gray-300 font-rajdhani mb-6">
+                <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
                   Explora los resultados específicos de automatización para cada área de tu empresa
                 </p>
               </div>
               <div className="text-center">
                 <a
                   href="/kpis-por-area"
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                  className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[48px]"
                 >
                   Ver KPIs por Área
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
@@ -251,22 +257,22 @@ const KPIs = () => {
             </div>
 
             {/* Enlace a Contacto */}
-            <div className="bg-gradient-to-br from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-2xl border border-[#04CFFB]/30 backdrop-blur-sm p-8 flex flex-col h-full">
+            <div className="bg-gradient-to-br from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-2xl border border-[#04CFFB]/30 backdrop-blur-sm p-6 sm:p-8 flex flex-col h-full">
               <div className="text-center flex-grow">
-                <h3 className="text-2xl font-orbitron font-bold text-white mb-4">
+                <h3 className="text-xl sm:text-2xl font-orbitron font-bold text-white mb-4">
                   Veamos estos resultados en tu empresa
                 </h3>
-                <p className="text-lg text-gray-300 font-rajdhani mb-6">
+                <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
                   Comienza tu transformación digital con una consulta personalizada
                 </p>
               </div>
               <div className="text-center">
                 <a
                   href="#contact"
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl"
+                  className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[48px]"
                 >
                   Comenzar mi Transformación
-                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </a>
