@@ -148,7 +148,7 @@ const Services = () => {
                       </p>
 
                       {/* Descripción con fondo semitransparente */}
-                      <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-6 mb-10 max-w-4xl mx-auto">
+                      <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-6 mb-10 max-w-4xl mx-auto">
                         <p className="text-lg text-white font-rajdhani leading-relaxed">
                           {service.description}
                         </p>
