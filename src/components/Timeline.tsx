@@ -54,7 +54,9 @@ const Timeline = () => {
                 }`}
               >
                 {/* Content */}
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}`}>
+                <div className={`w-full md:w-5/12 md:text-left ${
+                  index % 2 === 0 ? 'md:pr-6' : 'md:pl-6'
+                }`}>
                   <div className={`p-8 rounded-2xl border transition-all duration-500 ${
                     phase.active 
                       ? 'bg-gradient-to-br from-[#4B32FF]/30 to-[#2784FA]/20 border-[#04CFFB]/50 shadow-2xl' 

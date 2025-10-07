@@ -23,7 +23,7 @@ const Checklist = () => {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden px-4">
+    <section id="checklist" className="relative py-20 overflow-hidden px-4">
       {/* Video de fondo */}
       <div className="absolute inset-0 z-0">
         <video

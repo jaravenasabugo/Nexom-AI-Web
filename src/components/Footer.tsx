@@ -12,16 +12,16 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Información de contacto */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-2xl font-orbitron font-bold text-white mb-6">
               Contacto
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
+              <div className="flex items-center justify-center md:justify-start text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Mail className="w-5 h-5 mr-3 text-[#4B32FF]" />
                 <a href="mailto:jaravenasabugo@gmail.com">nexom2025ai@gmail.com</a>
               </div>
-              <div className="flex items-center text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
+              <div className="flex items-center justify-center md:justify-start text-gray-300 font-rajdhani hover:text-[#04CFFB] transition-colors">
                 <Phone className="w-5 h-5 mr-3 text-[#4B32FF]" />
                 <a href="tel:+569 96767524">+569 96767524</a>
               </div>
@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
 
           {/* Servicios */}
-          <div>
+          <div className="text-center">
             <h3 className="text-2xl font-orbitron font-bold text-white mb-6">
               Servicios
             </h3>
@@ -40,11 +40,11 @@ const Footer = () => {
           </div>
 
           {/* Redes sociales */}
-          <div>
+          <div className="text-center md:text-right">
             <h3 className="text-2xl font-orbitron font-bold text-white mb-6">
               Síguenos
             </h3>
-            <div className="flex space-x-4">
+            <div className="flex justify-center md:justify-end space-x-4">
               {/* Instagram */}
               <a
                 href="https://www.instagram.com/nexom.ai/"

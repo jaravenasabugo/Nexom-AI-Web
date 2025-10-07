@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X, Zap, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,6 +18,21 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Cerrar dropdown al hacer clic fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isDropdownOpen) {
+        const target = event.target as HTMLElement;
+        if (!target.closest('.dropdown-container')) {
+          setIsDropdownOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDropdownOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -27,20 +43,33 @@ const Navbar = () => {
 
   const handleNavClick = (item: any) => {
     if (item.isLink) {
-      // Es un enlace, no hacer scroll
+      // Es un enlace
+      if (item.href.startsWith('/#')) {
+        // Es un enlace a la página principal con hash
+        if (location.pathname === '/') {
+          // Si estamos en la página principal, hacer scroll
+          scrollToSection(item.id);
+        } else {
+          // Si estamos en otra página, navegar a la página principal
+          navigate('/');
+          // Esperar a que se cargue la página y luego hacer scroll
+          setTimeout(() => {
+            scrollToSection(item.id);
+          }, 500);
+        }
+      } else {
+        // Es un enlace a otra página
+        navigate(item.href);
+      }
       setIsOpen(false);
     } else {
       // Es una sección de la página
       if (location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area') {
         // Si estamos en una página secundaria, navegar a la página principal con scroll
-        navigate(`/#${item.id}`);
-        // Esperar un poco y luego hacer scroll
+        navigate('/');
         setTimeout(() => {
-          const element = document.getElementById(item.id);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
+          scrollToSection(item.id);
+        }, 500);
       } else {
         // Si estamos en la página principal, hacer scroll
         scrollToSection(item.id);
@@ -52,9 +81,15 @@ const Navbar = () => {
   const navItems = [
     { name: 'Nosotros', id: 'nosotros', isLink: true, href: '/nosotros' },
     { name: 'Servicios', id: 'services' },
-    { name: 'Por qué elegirnos', id: 'why-us' },
-    { name: 'Preguntas Frecuentes', id: 'faq', isLink: true, href: '/preguntas-frecuentes' },
+    { name: 'Casos de Uso', id: 'use-cases' },
+    { name: '¿Puedo automatizar mi proceso?', id: 'checklist' },
     { name: 'Contacto', id: 'contact' }
+  ];
+
+  const dropdownItems = [
+    { name: 'KPIs Generales', id: 'kpis' },
+    { name: 'KPIs por Industria', id: 'kpis-por-area', isLink: true, href: '/kpis-por-area' },
+    { name: 'Preguntas Frecuentes', id: 'faq', isLink: true, href: '/preguntas-frecuentes' }
   ];
 
   return (
@@ -65,31 +100,17 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
-              <Link
-                to="/"
-                className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
-              >
-                <img 
-                  src="/assets/Logos/Simbolo.png" 
-                  alt="Nexom AI Logo" 
-                  className="w-8 h-8 object-contain"
-                />
-                <span className="font-orbitron font-bold text-xl">Nexom AI</span>
-              </Link>
-            ) : (
-              <button
-                onClick={() => scrollToSection('hero')}
-                className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
-              >
-                <img 
-                  src="/assets/Logos/Simbolo.png" 
-                  alt="Nexom AI Logo" 
-                  className="w-8 h-8 object-contain"
-                />
-                <span className="font-orbitron font-bold text-xl">Nexom AI</span>
-              </button>
-            )}
+            <Link
+              to="/"
+              className="flex items-center space-x-3 text-white hover:text-[#04CFFB] transition-colors duration-300"
+            >
+              <img 
+                src="/assets/Logos/Simbolo.png" 
+                alt="Nexom AI Logo" 
+                className="w-8 h-8 object-contain"
+              />
+              <span className="font-orbitron font-bold text-xl">Nexom AI</span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
@@ -116,6 +137,47 @@ const Navbar = () => {
                   </button>
                 )
               ))}
+              
+              {/* Dropdown Otros */}
+              <div className="relative dropdown-container">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="text-white hover:text-[#04CFFB] font-rajdhani font-medium transition-colors duration-300 relative group flex items-center"
+                >
+                  Otros
+                  <ChevronDown className={`ml-1 w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#4B32FF] to-[#04CFFB] group-hover:w-full transition-all duration-300"></span>
+                </button>
+                
+                {/* Dropdown Menu */}
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-[#000018]/95 backdrop-blur-md rounded-lg shadow-xl border border-[#4B32FF]/20 py-2 z-50">
+                    {dropdownItems.map((item) => (
+                      item.isLink ? (
+                        <Link
+                          key={item.id}
+                          to={item.href}
+                          className="block px-4 py-2 text-white hover:text-[#04CFFB] hover:bg-[#4B32FF]/20 font-rajdhani font-medium transition-all duration-300"
+                          onClick={() => setIsDropdownOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <button
+                          key={item.id}
+                          onClick={() => {
+                            handleNavClick(item);
+                            setIsDropdownOpen(false);
+                          }}
+                          className="block w-full text-left px-4 py-2 text-white hover:text-[#04CFFB] hover:bg-[#4B32FF]/20 font-rajdhani font-medium transition-all duration-300"
+                        >
+                          {item.name}
+                        </button>
+                      )
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -182,6 +244,36 @@ const Navbar = () => {
                 </button>
               )
             ))}
+            
+            {/* Dropdown Otros en Mobile */}
+            <div className="border-t border-[#4B32FF]/20 pt-2 mt-2">
+              <div className="px-3 py-2 text-white font-rajdhani font-medium text-sm text-gray-400">
+                Otros
+              </div>
+              {dropdownItems.map((item) => (
+                item.isLink ? (
+                  <Link
+                    key={item.id}
+                    to={item.href}
+                    className="block w-full text-left px-6 py-2 text-white hover:text-[#04CFFB] hover:bg-[#4B32FF]/20 font-rajdhani font-medium rounded-md transition-all duration-300"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      handleNavClick(item);
+                      setIsOpen(false);
+                    }}
+                    className="block w-full text-left px-6 py-2 text-white hover:text-[#04CFFB] hover:bg-[#4B32FF]/20 font-rajdhani font-medium rounded-md transition-all duration-300"
+                  >
+                    {item.name}
+                  </button>
+                )
+              ))}
+            </div>
             {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
               <button
                 onClick={() => {

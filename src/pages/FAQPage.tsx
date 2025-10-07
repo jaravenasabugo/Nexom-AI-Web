@@ -116,17 +116,17 @@ const FAQPage: React.FC = () => {
                 {faqItems.map((item, index) => (
                   <div
                     key={item.id}
-                    className={`group bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.01] hover:shadow-2xl hover:border-[#04CFFB]/50 ${index === 1 ? 'scale-95' : ''}`}
+                    className="group bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-3xl border border-[#4B32FF]/30 overflow-hidden transition-all duration-500 transform hover:scale-[1.01] hover:shadow-2xl hover:border-[#04CFFB]/50"
                   >
                     {/* Header de la tarjeta */}
                     <div className="p-8 text-center border-b border-[#4B32FF]/20">
                       <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-r ${index === 0 ? 'from-[#4B32FF] to-[#2784FA]' : 'from-[#04CFFB] to-[#2784FA]'} mb-4 group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110`}>
                         <item.icon className="w-10 h-10 text-white" />
                       </div>
-                      <h2 className={`${index === 1 ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} font-orbitron font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300`}>
+                      <h2 className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B32FF] group-hover:to-[#04CFFB] group-hover:bg-clip-text transition-all duration-300">
                         {item.title}
                       </h2>
-                      <p className={`${index === 1 ? 'text-base' : 'text-lg'} text-gray-300 font-rajdhani leading-relaxed max-w-4xl mx-auto`}>
+                      <p className="text-lg text-gray-300 font-rajdhani leading-relaxed max-w-4xl mx-auto">
                         {item.description}
                       </p>
                     </div>

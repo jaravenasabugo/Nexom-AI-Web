@@ -222,7 +222,7 @@ const UseCases = () => {
             Casos de Uso por Área
           </h2>
           <p className="text-xl text-gray-300 font-rajdhani max-w-3xl mx-auto">
-            Descubre cómo la automatización puede transformar cada área de tu empresa. Deslízate horizontalmente para explorar todas las categorías.
+            Descubre cómo la automatización puede transformar cada área de tu empresa. 
           </p>
         </div>
 

@@ -6,7 +6,6 @@ import KPIs from './components/KPIs';
 import Services from './components/Services';
 import Checklist from './components/Checklist';
 import UseCases from './components/UseCases';
-import WhyUs from './components/WhyUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -23,7 +22,6 @@ const HomePage = () => (
     <Services />
     <Checklist />
     <UseCases />
-    <WhyUs />
     <Contact />
     <Footer />
   </div>
