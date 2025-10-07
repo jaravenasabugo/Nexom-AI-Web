@@ -35,16 +35,16 @@ const Checklist = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {checklistItems.map((item, index) => (
             <div
               key={index}
-              className="group flex items-start space-x-4 p-6 bg-gradient-to-r from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-xl border border-[#4B32FF]/20 hover:border-[#04CFFB]/40 transition-all duration-300"
+              className="group text-center p-6 bg-gradient-to-br from-[#1E1CA1]/20 to-[#4B32FF]/10 rounded-xl border border-[#4B32FF]/20 hover:border-[#04CFFB]/40 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
             >
-              <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-lg flex items-center justify-center group-hover:from-[#5027FE] group-hover:to-[#04CFFB] transition-all duration-300">
-                <item.icon className="w-6 h-6 text-white" />
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] rounded-2xl mb-4 group-hover:from-[#5027FE] group-hover:to-[#04CFFB] transition-all duration-300 group-hover:scale-110">
+                <item.icon className="w-8 h-8 text-white" />
               </div>
-              <p className="text-lg font-rajdhani text-gray-300 leading-relaxed flex-1">
+              <p className="text-base font-rajdhani text-gray-300 leading-relaxed">
                 {item.text}
               </p>
             </div>
