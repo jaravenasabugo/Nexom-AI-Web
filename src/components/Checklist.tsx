@@ -17,7 +17,7 @@ const Checklist = () => {
     },
     {
       icon: ListChecks,
-      text: "Un proceso es automatizable cuando sigue pasos definidos, por ejemplo: si ocurre X, entonces hacer Y."
+      text: "El proceso puede expresarse mediante reglas claras y repetibles que indican qué acción seguir en cada caso."
     },
     
   ];

@@ -1,9 +1,13 @@
-import { useState, useRef } from 'react';
-import { Bot, Cog, BarChart3, Workflow, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Bot, Cog, BarChart3, Workflow, Share2, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
 
 const Services = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoScrollActive, setIsAutoScrollActive] = useState(true);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const userInteractionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const services = [
     {
@@ -65,23 +69,89 @@ const Services = () => {
     }
   ];
 
+  // Auto-scroll effect
+  useEffect(() => {
+    if (isAutoScrollActive && !isUserInteracting) {
+      autoScrollIntervalRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % services.length);
+      }, 4000); // Cambia cada 4 segundos
+    } else {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+    }
+
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+    };
+  }, [isAutoScrollActive, isUserInteracting, services.length]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+      if (userInteractionTimeoutRef.current) {
+        clearTimeout(userInteractionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleUserInteraction = () => {
+    setIsUserInteracting(true);
+    setIsAutoScrollActive(false);
+    
+    // Limpiar timeout anterior si existe
+    if (userInteractionTimeoutRef.current) {
+      clearTimeout(userInteractionTimeoutRef.current);
+    }
+    
+    // No reanudar automáticamente - el usuario debe usar el botón
+  };
+
+  const toggleAutoScroll = () => {
+    if (isAutoScrollActive) {
+      setIsAutoScrollActive(false);
+      setIsUserInteracting(true);
+    } else {
+      setIsAutoScrollActive(true);
+      setIsUserInteracting(false);
+    }
+  };
+
   const nextSlide = () => {
+    handleUserInteraction();
     setCurrentSlide((prev) => (prev + 1) % services.length);
   };
 
   const prevSlide = () => {
+    handleUserInteraction();
     setCurrentSlide((prev) => (prev - 1 + services.length) % services.length);
   };
 
   const goToSlide = (index: number) => {
+    handleUserInteraction();
     setCurrentSlide(index);
   };
 
   const scrollToContact = () => {
+    handleUserInteraction(); // Detener auto-scroll cuando se hace clic en el botón
     const element = document.getElementById('contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleMouseEnter = () => {
+    setIsUserInteracting(true);
+  };
+
+  const handleMouseLeave = () => {
+    // No reanudar inmediatamente, esperar el timeout normal
   };
 
   return (
@@ -91,6 +161,30 @@ const Services = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold text-white mb-4 sm:mb-6">
             Nuestros Servicios
           </h2>
+          
+          {/* Botón de Toggle Auto-scroll */}
+          <div className="flex justify-center mb-6">
+            <button
+              onClick={toggleAutoScroll}
+              className={`inline-flex items-center px-4 py-2 rounded-lg font-rajdhani font-medium transition-all duration-300 transform hover:scale-105 ${
+                isAutoScrollActive && !isUserInteracting
+                  ? 'bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white shadow-lg'
+                  : 'bg-white/10 text-gray-300 hover:bg-white/20 border border-white/20'
+              }`}
+            >
+              {isAutoScrollActive && !isUserInteracting ? (
+                <>
+                  <Pause className="w-4 h-4 mr-2" />
+                  Detener movimiento
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4 mr-2" />
+                  Mover automáticamente 
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Carrusel de Servicios */}
@@ -114,6 +208,8 @@ const Services = () => {
           <div 
             ref={scrollContainerRef}
             className="overflow-hidden mx-0 sm:mx-16 md:mx-20"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <div 
               className="flex transition-transform duration-500 ease-in-out"
