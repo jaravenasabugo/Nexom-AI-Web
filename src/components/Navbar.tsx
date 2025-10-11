@@ -79,6 +79,7 @@ const Navbar = () => {
   };
 
   const navItems = [
+    { name: 'Inicio', id: 'hero', isLink: true, href: '/' },
     { name: 'Nosotros', id: 'nosotros', isLink: true, href: '/nosotros' },
     { name: 'Servicios', id: 'services' },
     { name: 'Casos de Uso', id: 'use-cases' },
@@ -114,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 item.isLink ? (
@@ -181,6 +182,30 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* Tablet Menu */}
+          <div className="hidden md:block lg:hidden">
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/"
+                className="text-white hover:text-[#04CFFB] font-rajdhani font-medium transition-colors duration-300 text-sm"
+              >
+                Inicio
+              </Link>
+              <Link
+                to="/nosotros"
+                className="text-white hover:text-[#04CFFB] font-rajdhani font-medium transition-colors duration-300 text-sm"
+              >
+                Nosotros
+              </Link>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-white hover:text-[#04CFFB] font-rajdhani font-medium transition-colors duration-300 text-sm"
+              >
+                Servicios
+              </button>
+            </div>
+          </div>
+
           {/* CTA Button */}
           <div className="hidden md:block">
             {location.pathname === '/preguntas-frecuentes' || location.pathname === '/nosotros' || location.pathname === '/kpis-por-area' ? (
@@ -194,14 +219,14 @@ const Navbar = () => {
                     }
                   }, 100);
                 }}
-                className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center px-2 py-1 md:px-2 lg:px-3 xl:px-6 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-lg text-xs md:text-xs lg:text-xs xl:text-sm"
               >
                 Solicitar Cotización
               </button>
             ) : (
               <button
                 onClick={() => scrollToSection('contact')}
-                className="inline-flex items-center px-6 py-2 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center px-2 py-1 md:px-2 lg:px-3 xl:px-6 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-lg text-xs md:text-xs lg:text-xs xl:text-sm"
               >
                 Solicitar Cotización
               </button>
@@ -286,14 +311,14 @@ const Navbar = () => {
                     }
                   }, 100);
                 }}
-                className="block w-full text-left px-3 py-3 mt-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300"
+                className="block w-full text-center px-4 py-3 mt-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 text-sm shadow-lg"
               >
                 Solicitar Cotización
               </button>
             ) : (
               <button
                 onClick={() => scrollToSection('contact')}
-                className="block w-full text-left px-3 py-3 mt-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300"
+                className="block w-full text-center px-4 py-3 mt-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold rounded-lg hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 text-sm shadow-lg"
               >
                 Solicitar Cotización
               </button>

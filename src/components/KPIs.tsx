@@ -237,10 +237,10 @@ const KPIs = () => {
             <div className="bg-gradient-to-br from-[#4B32FF]/20 to-[#04CFFB]/20 rounded-2xl border border-[#04CFFB]/30 backdrop-blur-sm p-6 sm:p-8 flex flex-col h-full">
               <div className="text-center flex-grow">
                 <h3 className="text-xl sm:text-2xl font-orbitron font-bold text-white mb-4">
-                  ¿Quieres saber cómo impactaría en tu área?
+                  ¿Quieres saber cómo impacta en tu industria?
                 </h3>
                 <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
-                  Explora los resultados específicos de automatización para cada área de tu empresa
+                  Explora los resultados específicos 
                 </p>
               </div>
               <div className="text-center">
@@ -248,7 +248,7 @@ const KPIs = () => {
                   href="/kpis-por-area"
                   className="inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#4B32FF] to-[#2784FA] text-white font-rajdhani font-bold text-base sm:text-lg rounded-xl hover:from-[#5027FE] hover:to-[#04CFFB] transition-all duration-300 transform hover:scale-105 shadow-2xl min-h-[48px]"
                 >
-                  Ver KPIs por Área
+                  Ver KPIs por Industria
                   <svg className="ml-2 w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

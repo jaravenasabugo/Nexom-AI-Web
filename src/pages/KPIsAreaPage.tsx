@@ -485,10 +485,10 @@ const KPIsAreaPage: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-orbitron font-bold text-white mb-6">
-                KPIs por Área de Negocio
+                KPIs por Industria
               </h1>
               <p className="text-xl text-gray-300 font-rajdhani max-w-4xl mx-auto leading-relaxed mb-6">
-                Descubre cómo la automatización puede transformar específicamente tu área de trabajo con resultados medibles y concretos
+                Descubre cómo la automatización puede transformar específicamente tu Industria con resultados medibles y concretos
               </p>
             </div>
 
@@ -510,10 +510,10 @@ const KPIsAreaPage: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-orbitron font-bold text-white mb-4">
-                Resultados Específicos por Área
+                Resultados Específicos por Industria
               </h2>
               <p className="text-lg text-gray-300 font-rajdhani mb-8">
-                Deslízate para explorar los impactos de la automatización en cada área de tu empresa
+                Deslízate para explorar los impactos de la automatización 
               </p>
               
               {/* Menú desplegable para selección rápida */}
@@ -660,7 +660,7 @@ const KPIsAreaPage: React.FC = () => {
             {/* CTA Final */}
             <div className="text-center mt-16">
               <p className="text-base sm:text-lg text-gray-300 font-rajdhani mb-6">
-                ¿Quieres implementar estas mejoras en tu área?
+                ¿Quieres estas mejoras en tu empresa?
               </p>
               <button
                 onClick={handleGoToContact}
